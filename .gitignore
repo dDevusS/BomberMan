@@ -2,4 +2,4 @@
 .externalToolBuilders/
 .project
 .classpath
-bin/
+*bin/
