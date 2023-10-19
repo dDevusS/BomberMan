@@ -24,7 +24,16 @@ public class Game {
 		}
 	}
 	
-	private static void startNewGame() {}
+	private static void startNewGame() {
+		System.out.println("""
+				Choose dificult level.
+			------------------------------
+			(press from 1 to 3)
+			1 - easy
+			2 - medium
+			3 - hard
+				""");
+	}
 	
 	private static void continuePreviosGame() {}
 }
