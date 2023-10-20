@@ -1,4 +1,4 @@
-package game_processing;
+package gameProcessing;
 
 import java.util.Scanner;
 

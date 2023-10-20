@@ -1,4 +1,4 @@
-package game_entity;
+package gameEntity;
 
 import java.util.HashMap;
 

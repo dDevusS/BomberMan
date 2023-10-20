@@ -1,4 +1,4 @@
-package game_entity;
+package gameEntity;
 
 public class Cell {
 	

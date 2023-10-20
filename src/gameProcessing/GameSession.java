@@ -1,9 +1,10 @@
-package game_processing;
+package gameProcessing;
 
 import java.util.HashMap;
-import game_entity.Cell;
-import game_entity.Coordinate;
-import game_entity.GameField;
+
+import gameEntity.Cell;
+import gameEntity.Coordinate;
+import gameEntity.GameField;
 
 public class GameSession {
 

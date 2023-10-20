@@ -1,4 +1,4 @@
-import game_processing.UserAction;
+import gameProcessing.UserAction;
 
 public class Game {
 
