@@ -36,6 +36,7 @@ public class Game {
 				""");
 		
 		GameSession game = chooseDificult();
+		game.startGame();
 	}
 	
 	private static GameSession chooseDificult() {

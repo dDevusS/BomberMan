@@ -5,6 +5,7 @@ public class Cell {
 	private Coordinate coordinate;
 	private int stepsFromBomb = 0;
 	private boolean isBomb = false;
+	private boolean isVisible = false;
 	
 	Cell(int column, int row, int stepsFromBomb) {
 		this.coordinate = new Coordinate(column, row);
@@ -34,4 +35,14 @@ public class Cell {
 	public void plusStep() {
 		this.stepsFromBomb++;
 	}
+
+	public boolean isVisible() {
+		return isVisible;
+	}
+
+	public void doVisible(boolean isVisible) {
+		this.isVisible = isVisible;
+	}
+	
+	
 }

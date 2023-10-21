@@ -11,6 +11,7 @@ public class GameSession {
 	private int columns;
 	private int rows;
 	private int quantityOfBombs;
+	private int visibleCell;
 	private GameField gameField;
 	
 	public GameSession(int columns, int rows, int quantutyOfBombs) {
@@ -18,6 +19,10 @@ public class GameSession {
 		this.rows = rows;
 		this.quantityOfBombs = quantutyOfBombs;
 		this.gameField = new GameField(columns, rows, quantutyOfBombs);
+	}
+	
+	public void startGame() {
+		
 	}
 	
 	public void isPlay() {}

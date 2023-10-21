@@ -37,8 +37,4 @@ public class GameField {
 	public HashMap<Coordinate, Cell> getGameField() {
 		return gameField;
 	}
-
-	public void setGameField(HashMap<Coordinate, Cell> gameField) {
-		this.gameField = gameField;
-	}
 }
