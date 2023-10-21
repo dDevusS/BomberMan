@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class UserAction {
 	
 	public static Scanner input = new Scanner(System.in);
-	public 
 	
 	public void makeTurn() {}
 	

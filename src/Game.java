@@ -35,12 +35,18 @@ public class Game {
 			3 - hard
 				""");
 		
-		switch (UserAction.input.nextLine()) {
-			case "1" : GameSession game = new GameSession(10, 10, 20); break;
-			case "2" : GameSession game = new GameSession(10, 10, 30); break;
-			case "3" : GameSession game = new GameSession(10, 10, 40); break;
+		GameSession game = chooseDificult();
+	}
+	
+	private static GameSession chooseDificult() {
+		while (true) {
+			switch (UserAction.input.nextLine()) {
+			case "1" : return new GameSession(10, 10, 20);
+			case "2" : return new GameSession(10, 10, 30);
+			case "3" : return new GameSession(10, 10, 40);
 			default :
 				System.out.println("Uncorrect command.");
+			}
 		}
 	}
 	
