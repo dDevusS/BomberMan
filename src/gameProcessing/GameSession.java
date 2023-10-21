@@ -11,13 +11,13 @@ public class GameSession {
 	private int columns;
 	private int rows;
 	private int quantityOfBombs;
-	private HashMap<Coordinate, Cell> gameField;
+	private GameField gameField;
 	
 	public GameSession(int columns, int rows, int quantutyOfBombs) {
 		this.columns = columns;
 		this.rows = rows;
 		this.quantityOfBombs = quantutyOfBombs;
-		this.gameField = new HashMap<Coordinate, Cell>();
+		this.gameField = new GameField(columns, rows, quantutyOfBombs);
 	}
 	
 	public void isPlay() {}

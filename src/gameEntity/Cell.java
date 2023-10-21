@@ -8,6 +8,11 @@ public class Cell {
 	
 	Cell(int column, int row, int stepsFromBomb) {
 		this.coordinate = new Coordinate(column, row);
+		this.stepsFromBomb = stepsFromBomb;
+		
+		if (stepsFromBomb == 9) {
+			this.isBomb = true;
+		}
 	}
 	
 	public Coordinate getCoordinate() {
@@ -25,8 +30,8 @@ public class Cell {
 	public boolean isBomb() {
 		return isBomb;
 	}
-
-	public void setBomb(boolean isBomb) {
-		this.isBomb = isBomb;
+	
+	public void plusStep() {
+		this.stepsFromBomb++;
 	}
 }
