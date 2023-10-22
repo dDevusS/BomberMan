@@ -25,7 +25,20 @@ public class GameSession {
 		
 	}
 	
+	public GameField getGameField() {
+		return gameField;
+	}
+
 	public void isPlay() {}
 	
 	public void isPause() {}
+
+	public int getColumns() {
+		return columns;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+	
 }
