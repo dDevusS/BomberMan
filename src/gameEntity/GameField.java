@@ -36,4 +36,12 @@ public class GameField {
 	public HashMap<Coordinate, Cell> getGameField() {
 		return gameField;
 	}
+	
+	public String showCell(int colum, int row) {
+		if (this.getGameField().get(new Coordinate(colum, row)) == null) {
+			return "0";
+		}
+		
+		return Integer.toString(this.getGameField().get(new Coordinate(colum, row)).getStepsFromBomb());
+	}
 }

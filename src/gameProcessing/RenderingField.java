@@ -9,8 +9,6 @@ public class RenderingField {
 	
 	public static void doRendering(GameSession game) {
 		
-		HashMap<Coordinate, Cell> gameField = game.getGameField().getGameField();
-		
 		for (int y = -1; y <= game.getColumns(); y++) {
 			for (int x = 0; x <= game.getRows(); x++) {
 				if (y == -1 && x == 0 || y == 0 && x == 0) {
@@ -39,12 +37,7 @@ public class RenderingField {
 					}
 				}
 				else {
-					if (gameField.get(new Coordinate(y, x)) == null) {
-						System.out.print("  0 ");
-					}
-					else {
-						System.out.print("  " + gameField.get(new Coordinate(y, x)).getStepsFromBomb() + " ");
-					}
+						System.out.print("  " + game.getGameField().showCell(x, y) + " ");
 				}
 			}
 			if (y != game.getColumns() && y > 0) System.out.println("\n  |");
