@@ -22,7 +22,7 @@ public class GameSession {
 	}
 	
 	public void startGame() {
-		
+		RenderingField.doRendering(this);
 	}
 	
 	public GameField getGameField() {

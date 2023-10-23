@@ -11,21 +11,43 @@ public class RenderingField {
 		
 		HashMap<Coordinate, Cell> gameField = game.getGameField().getGameField();
 		
-		for (int y = 0; y <= game.getColumns(); y++) {
-			for (int x = 0; x <= game.getRows(); x++) {
-				if (y == 0 && x == 0) {
-					System.out.println("   ");
+		for (int y = -2; y <= game.getColumns(); y++) {
+			for (int x = -1; x <= game.getRows(); x++) {
+				if (y == -2 && x == -1 || y == -1 && x == -1) {
+					System.out.print("   ");
 				}
-				else if (y == 0 && x != 0) {
-					System.out.println(" 1  2  3  4  5  6  7  8  9  10");
+				else if (y == -1) {
+					System.out.print("---");
+					if (x == game.getRows()) System.out.print("\n");
+				}	
+				else if (y == -2) {
+					if (x < 10) {
+						System.out.print(" " + x + " ");
+						if (x == game.getRows()) System.out.print("\n");
+					}
+					else {
+						System.out.print(x + " ");
+						if (x == game.getRows()) System.out.print("\n");
+					}
 				}
-				else if (x == 0 && y > 0) {
-					System.out.println(" " + y + " ");
+				else if (x == -1 && y > -1) {
+					if (y < 10) {
+						System.out.print(" " + y + "|");
+					}
+					else {
+						System.out.print(y + "|");
+					}
 				}
 				else {
-					
+					if (gameField.get(new Coordinate(y, x)) == null) {
+						System.out.print(" 0 ");
+					}
+					else {
+						System.out.print(" " + gameField.get(new Coordinate(y, x)).getStepsFromBomb() + " ");
+					}
 				}
 			}
+			if (y != game.getColumns() && y > -1) System.out.println("\n  |");
 		}
 	}
 }
