@@ -1,20 +1,19 @@
 package gameEntity;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Random;
 
 public class GameField {
 
-	private HashMap<Coordinate, Cell> gameField = new HashMap();
+	private HashMap<Coordinate, Cell> gameField = new HashMap<>();
 
 	public GameField(int columns, int rows, int quantityOfBombs) {
 		Random random = new Random();
 		int counterBombs = 0;
 
 		while (counterBombs < quantityOfBombs) {
-			int column = random.nextInt(columns);
-			int row = random.nextInt(rows);
+			int column = random.nextInt(1, columns);
+			int row = random.nextInt(1 , rows);
 			Coordinate randomCoordinate = new Coordinate(column, row);
 
 			if (gameField.get(randomCoordinate) == null || !gameField.get(randomCoordinate).isBomb()) {
