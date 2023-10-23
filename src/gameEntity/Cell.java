@@ -26,6 +26,9 @@ public class Cell {
 	
 	public void setStepsFromBomb(int stepsFromBomb) {
 		this.stepsFromBomb = stepsFromBomb;
+		if (stepsFromBomb == 9) {
+			this.isBomb = true;
+		}
 	}
 
 	public boolean isBomb() {

@@ -1,10 +1,5 @@
 package gameProcessing;
 
-import java.util.HashMap;
-
-import gameEntity.Cell;
-import gameEntity.Coordinate;
-
 public class RenderingField {
 	
 	public static void doRendering(GameSession game) {
