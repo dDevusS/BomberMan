@@ -43,6 +43,10 @@ public class Cell {
 	public boolean isVisible() {
 		return isVisible;
 	}
+	
+	public void makeVisible() {
+		this.isVisible = true;
+	}
 
 	public void doVisible(boolean isVisible) {
 		this.isVisible = isVisible;
@@ -52,7 +56,7 @@ public class Cell {
 		return isBeginingCell;
 	}
 
-	public void setBeginingCell(boolean isBeginingCell) {
+	public void makeBeginingCell(boolean isBeginingCell) {
 		this.isBeginingCell = isBeginingCell;
 	}
 }
