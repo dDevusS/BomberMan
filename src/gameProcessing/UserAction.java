@@ -2,25 +2,29 @@ package gameProcessing;
 
 import java.util.Scanner;
 
+import gameEntity.Coordinate;
+
 public class UserAction {
 	
 	public static Scanner input = new Scanner(System.in);
 	
-	public static void makeFirstTurn(String command, GameSession game) {
-		
-	}
-	
 	public void makeTurn() {}
 	
-	public void pauseGame() {}
-	
 	private void saveGame() {}
+	
+	private static void makeVisibleAreaForFirstTurn(Coordinate coordinate, GameSession game) {
+		for (int y = -1; y <= 1; y++) {
+			for (int x = -1; x <= 1; x++) {
+				if (game.getGameField().get(coordinate.))
+			}
+		}
+	}
 	
 	enum typeCommand {
 		UNCORRECT, COORDINATE, EXIT;
 	}
 	
-	private typeCommand checkUserCommand(String userCommand, GameSession game) {
+	private static typeCommand checkUserCommand(String userCommand, GameSession game) {
 		switch (userCommand) {
 		case "exit" : return typeCommand.EXIT;
 		}

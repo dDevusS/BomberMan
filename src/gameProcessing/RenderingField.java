@@ -32,7 +32,7 @@ public class RenderingField {
 					}
 				}
 				else {
-						System.out.print("  " + game.getGameField().showCell(x, y) + " ");
+						System.out.print("  " + game.showCell(x, y) + " ");
 				}
 			}
 			if (y != game.getColumns() && y > 0) System.out.println("\n  |");

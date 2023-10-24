@@ -15,17 +15,6 @@ public class GameField {
 		return gameField;
 	}
 	
-	public String showCell(int colum, int row) {
-		if (!this.getGameField().get(new Coordinate(colum, row)).isVisible()) {
-			return ".";
-		}
-		else if (this.getGameField().get(new Coordinate(colum, row)).isBomb()) {
-			return "*";
-		}
-		
-		return Integer.toString(this.getGameField().get(new Coordinate(colum, row)).getStepsFromBomb());
-	}
-	
 	private void createClearField(int columns, int rows) {
 		for (int column = 1; column <= columns; column++) {
 			for (int row = 1; row <= rows; row++) {
