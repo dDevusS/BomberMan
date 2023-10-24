@@ -16,11 +16,31 @@ public class UserAction {
 	
 	private void saveGame() {}
 	
-	private boolean checkCommand(String command, GameSession game) {
-		
+	enum typeCommand {
+		UNCORRECT, COORDINATE, EXIT;
 	}
 	
-	private String[] getCoordinateFromCommand(String command) {
+	private typeCommand checkUserCommand(String userCommand, GameSession game) {
+		switch (userCommand) {
+		case "exit" : return typeCommand.EXIT;
+		}
 		
+		String[] command = userCommand.split("-");
+		
+		if (command.length == 2) {
+			try {
+				Integer.parseInt(command[0]);
+				Integer.parseInt(command[1]);
+				
+				if (Integer.parseInt(command[0]) > 0 && Integer.parseInt(command[0]) <= game.getColumns() ||
+						Integer.parseInt(command[0]) > 0 && Integer.parseInt(command[0]) <= game.getColumns()) {
+					return typeCommand.COORDINATE;
+				}
+			} 
+			catch (NumberFormatException e) {
+				return typeCommand.UNCORRECT;
+			}
+		}
+		return typeCommand.UNCORRECT;
 	}
 }

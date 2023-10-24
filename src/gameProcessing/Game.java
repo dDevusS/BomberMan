@@ -1,5 +1,4 @@
-import gameProcessing.GameSession;
-import gameProcessing.UserAction;
+package gameProcessing;
 
 public class Game {
 
@@ -7,7 +6,7 @@ public class Game {
 		launchMainMenu();
 	}
 	
-	private static void launchMainMenu() {
+	static void launchMainMenu() {
 		System.out.println("""
 				BomberMan.
 			------------------
