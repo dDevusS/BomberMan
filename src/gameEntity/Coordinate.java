@@ -11,6 +11,10 @@ public class Coordinate {
 		this.column = column;
 		this.row = row;
 	}
+	
+	public Coordinate shiftCoordinate(int y, int x) {
+		return new Coordinate(this.column + y, this.row + x);
+	}
 
 	@Override
 	public int hashCode() {
