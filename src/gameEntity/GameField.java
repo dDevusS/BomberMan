@@ -17,9 +17,11 @@ public class GameField {
 	}
 	
 	public String showCell(int colum, int row) {
-		// TODO: Manage method with visible cells;
-		if (this.getGameField().get(new Coordinate(colum, row)) == null) {
-			return "0";
+		if (!this.getGameField().get(new Coordinate(colum, row)).isVisible()) {
+			return ".";
+		}
+		else if (this.getGameField().get(new Coordinate(colum, row)).isBomb()) {
+			return "*";
 		}
 		
 		return Integer.toString(this.getGameField().get(new Coordinate(colum, row)).getStepsFromBomb());
@@ -57,5 +59,7 @@ public class GameField {
 		}
 	}
 	
-	private void createVisibleZone() {}
+	private void createVisibleZone() {
+		
+	}
 }
