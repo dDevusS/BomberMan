@@ -7,9 +7,8 @@ public class GameField {
 
 	private HashMap<Coordinate, Cell> gameField = new HashMap<>();
 
-	public GameField(int columns, int rows, int quantityOfBombs) {
+	public GameField(int columns, int rows) {
 		this.createClearField(columns, rows);
-		this.createBombs(columns, rows, quantityOfBombs);
 	}
 
 	public HashMap<Coordinate, Cell> getGameField() {
@@ -57,9 +56,5 @@ public class GameField {
 				}
 			}
 		}
-	}
-	
-	private void createVisibleZone() {
-		
 	}
 }

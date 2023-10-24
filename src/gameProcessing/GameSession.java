@@ -1,9 +1,5 @@
 package gameProcessing;
 
-import java.util.HashMap;
-
-import gameEntity.Cell;
-import gameEntity.Coordinate;
 import gameEntity.GameField;
 
 public class GameSession {
@@ -18,7 +14,7 @@ public class GameSession {
 		this.columns = columns;
 		this.rows = rows;
 		this.quantityOfBombs = quantutyOfBombs;
-		this.gameField = new GameField(columns, rows, quantutyOfBombs);
+		this.gameField = new GameField(columns, rows);
 	}
 	
 	public void startGame() {

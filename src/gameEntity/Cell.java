@@ -6,6 +6,7 @@ public class Cell {
 	private int stepsFromBomb = 0;
 	private boolean isBomb = false;
 	private boolean isVisible = false;
+	private boolean isBeginingCell = false;
 	
 	Cell(int column, int row, int stepsFromBomb) {
 		this.coordinate = new Coordinate(column, row);
@@ -46,6 +47,12 @@ public class Cell {
 	public void doVisible(boolean isVisible) {
 		this.isVisible = isVisible;
 	}
-	
-	
+
+	public boolean isBeginingCell() {
+		return isBeginingCell;
+	}
+
+	public void setBeginingCell(boolean isBeginingCell) {
+		this.isBeginingCell = isBeginingCell;
+	}
 }
