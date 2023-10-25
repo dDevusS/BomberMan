@@ -8,13 +8,20 @@ public class UserAction {
 	
 	public static Scanner input = new Scanner(System.in);
 	
-	public void makeTurn(String userCommand, GameSession game) {
-		switch (userCommand) {
-		case "exit" : System.exit(0); break;
-		}
-		
-		if (checkUserCommand(userCommand, game)) {
+	public void makeTurn(GameSession game) {
+		while (true) {
+			String userCommand = input.nextLine();
 			
+			switch (userCommand) {
+			case "exit" : System.exit(0); break;
+			}
+		
+			if (isCoordinate(userCommand, game)) {
+				
+			}
+			else {
+				System.out.println("You typed uncorrect command.");
+			}
 		}
 	}
 	
@@ -30,7 +37,7 @@ public class UserAction {
 		}
 	}
 	
-	private static boolean checkUserCommand(String userCommand, GameSession game) {	
+	private static boolean isCoordinate(String userCommand, GameSession game) {	
 		String[] command = userCommand.split("-");
 		
 		if (command.length == 2) {
