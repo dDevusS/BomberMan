@@ -17,10 +17,12 @@ public class UserAction {
 			}
 		
 			if (isCoordinate(userCommand, game)) {
+				String[] arrayCoordinate = userCommand.split("-");
+				
 				
 			}
 			else {
-				System.out.println("You typed uncorrect command.");
+				System.out.println("You typed uncorrect command. Please, try again.");
 			}
 		}
 	}
