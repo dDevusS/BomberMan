@@ -8,7 +8,15 @@ public class UserAction {
 	
 	public static Scanner input = new Scanner(System.in);
 	
-	public void makeTurn() {}
+	public void makeTurn(String userCommand, GameSession game) {
+		switch (userCommand) {
+		case "exit" : System.exit(0); break;
+		}
+		
+		if (checkUserCommand(userCommand, game)) {
+			
+		}
+	}
 	
 	private void saveGame() {}
 	
@@ -17,21 +25,12 @@ public class UserAction {
 			for (int x = -1; x <= 1; x++) {
 				if (game.getGameField().get(coordinate.shiftCoordinate(y, x)) != null) {
 					game.getGameField().get(coordinate.shiftCoordinate(y, x)).makeBeginingCell(true);
-					game.getGameField().get(coordinate.shiftCoordinate(y, x)).makeVisible();
 				}
 			}
 		}
 	}
 	
-	enum typeCommand {
-		UNCORRECT, COORDINATE, EXIT;
-	}
-	
-	private static typeCommand checkUserCommand(String userCommand, GameSession game) {
-		switch (userCommand) {
-		case "exit" : return typeCommand.EXIT;
-		}
-		
+	private static boolean checkUserCommand(String userCommand, GameSession game) {	
 		String[] command = userCommand.split("-");
 		
 		if (command.length == 2) {
@@ -41,13 +40,13 @@ public class UserAction {
 				
 				if (Integer.parseInt(command[0]) > 0 && Integer.parseInt(command[0]) <= game.getColumns() ||
 						Integer.parseInt(command[0]) > 0 && Integer.parseInt(command[0]) <= game.getColumns()) {
-					return typeCommand.COORDINATE;
+					return true;
 				}
 			} 
 			catch (NumberFormatException e) {
-				return typeCommand.UNCORRECT;
+				return false;
 			}
 		}
-		return typeCommand.UNCORRECT;
+		return false;
 	}
 }
