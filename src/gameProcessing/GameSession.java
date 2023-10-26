@@ -60,4 +60,8 @@ public class GameSession {
 	public void increaceCounterTurn() {
 		this.counterTurns++;
 	}
+
+	public int getQuantityOfBombs() {
+		return quantityOfBombs;
+	}
 }

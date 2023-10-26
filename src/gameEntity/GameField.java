@@ -23,7 +23,7 @@ public class GameField {
 		}
 	}
 	
-	private void createBombs(int columns, int rows, int quantityOfBombs) {
+	public void createBombs(int columns, int rows, int quantityOfBombs) {
 		Random random = new Random();
 		int counterBombs = 0;
 

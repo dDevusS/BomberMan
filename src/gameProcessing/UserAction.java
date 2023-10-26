@@ -22,12 +22,11 @@ public class UserAction {
 				if (game.getCounterTurns() == 0) {
 					makeVisibleAreaForFirstTurn(new Coordinate(Integer.parseInt(arrayCoordinate[0]), Integer.parseInt(arrayCoordinate[1])), game);
 					game.increaceCounterTurn();
-					
+					game.getGameField().createBombs(game.getColumns(), game.getRows(), game.getQuantityOfBombs());
 					return;
 				}
-			}
-			else {
-				System.out.println("You typed uncorrect command. Please, try again.");
+				
+				
 			}
 		}
 	}
@@ -37,8 +36,8 @@ public class UserAction {
 	private static void makeVisibleAreaForFirstTurn(Coordinate coordinate, GameSession game) {
 		for (int y = -1; y <= 1; y++) {
 			for (int x = -1; x <= 1; x++) {
-				if (game.getGameField().get(coordinate.shiftCoordinate(y, x)) != null) {
-					game.getGameField().get(coordinate.shiftCoordinate(y, x)).makeBeginingCell(true);
+				if (game.getGameField().getGameField().get(coordinate.shiftCoordinate(y, x)) != null) {
+					game.getGameField().getGameField().get(coordinate.shiftCoordinate(y, x)).makeBeginingCell(true);
 				}
 			}
 		}
