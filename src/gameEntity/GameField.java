@@ -32,13 +32,14 @@ public class GameField {
 			int row = random.nextInt(1 , rows);
 			Coordinate randomCoordinate = new Coordinate(column, row);
 
-			if (!gameField.get(randomCoordinate).isBomb()) {
+			if (!gameField.get(randomCoordinate).isBomb() && !gameField.get(randomCoordinate).isBeginingCell()) {
 				gameField.get(randomCoordinate).setStepsFromBomb(9);
 				counterBombs++;
 
 				for (int y = 1; y >= -1; y--) {
 					for (int x = -1; x <= 1; x++) {
-						if (gameField.get(new Coordinate(column + y, row + x)) != null && !gameField.get(new Coordinate(column + y, row + x)).isBomb()) {
+						if (gameField.get(new Coordinate(column + y, row + x)) != null && 
+								!gameField.get(new Coordinate(column + y, row + x)).isBomb()) {
 							gameField.get(new Coordinate(column + y, row + x)).plusStep();
 						}
 					}

@@ -56,8 +56,8 @@ public class Cell {
 		return isBeginingCell;
 	}
 
-	public void makeBeginingCell(boolean isBeginingCell) {
-		this.isBeginingCell = isBeginingCell;
+	public void makeBeginingCell() {
+		this.isBeginingCell = true;
 		this.isVisible = true;
 	}
 }
