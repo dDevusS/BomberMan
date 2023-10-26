@@ -8,7 +8,7 @@ public class UserAction {
 	
 	public static Scanner input = new Scanner(System.in);
 	
-	public void makeTurn(GameSession game) {
+	public static void makeTurn(GameSession game) {
 		while (true) {
 			String userCommand = input.nextLine();
 			
@@ -19,7 +19,12 @@ public class UserAction {
 			if (isCoordinate(userCommand, game)) {
 				String[] arrayCoordinate = userCommand.split("-");
 				
-				
+				if (game.getCounterTurns() == 0) {
+					makeVisibleAreaForFirstTurn(new Coordinate(Integer.parseInt(arrayCoordinate[0]), Integer.parseInt(arrayCoordinate[1])), game);
+					game.increaceCounterTurn();
+					
+					return;
+				}
 			}
 			else {
 				System.out.println("You typed uncorrect command. Please, try again.");

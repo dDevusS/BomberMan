@@ -26,19 +26,19 @@ public class GameSession {
 		RenderingField.doRendering(this);
 	}
 	
-	public HashMap<Coordinate, Cell> getGameField() {
-		return gameField.getGameField();
+	public GameField getGameField() {
+		return gameField;
 	}
 	
 	public String showCell(int colum, int row) {
-		if (!this.getGameField().get(new Coordinate(colum, row)).isVisible()) {
+		if (!this.gameField.getGameField().get(new Coordinate(colum, row)).isVisible()) {
 			return ".";
 		}
-		else if (this.getGameField().get(new Coordinate(colum, row)).isBomb()) {
+		else if (this.gameField.getGameField().get(new Coordinate(colum, row)).isBomb()) {
 			return "*";
 		}
 		
-		return Integer.toString(this.getGameField().get(new Coordinate(colum, row)).getStepsFromBomb());
+		return Integer.toString(this.gameField.getGameField().get(new Coordinate(colum, row)).getStepsFromBomb());
 	}
 
 	public void isPlay() {}
@@ -51,5 +51,13 @@ public class GameSession {
 
 	public int getRows() {
 		return rows;
+	}
+
+	public int getCounterTurns() {
+		return counterTurns;
+	}
+	
+	public void increaceCounterTurn() {
+		this.counterTurns++;
 	}
 }
