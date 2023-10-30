@@ -14,6 +14,7 @@ public class GameSession {
 	private int visibleCell;
 	private int counterTurns = 0;
 	private GameField gameField;
+	private boolean isExploded = false;
 	
 	public GameSession(int columns, int rows, int quantutyOfBombs) {
 		this.columns = columns;
@@ -65,5 +66,9 @@ public class GameSession {
 
 	public int getQuantityOfBombs() {
 		return quantityOfBombs;
+	}
+	
+	public void makeExplosion() {
+		this.isExploded = true;
 	}
 }

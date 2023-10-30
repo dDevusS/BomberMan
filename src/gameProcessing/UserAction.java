@@ -27,8 +27,20 @@ public class UserAction {
 					return;
 				}
 				else {
-					
+					if (game.getGameField().getGameField().get(coordinate).isBomb()) {
+						game.getGameField().getGameField().get(coordinate).makeVisible();
+						game.makeExplosion();
+						return;
+					}
+					else {
+						game.getGameField().getGameField().get(coordinate).makeVisible();
+						openAllZeroCellClosedToChoese(coordinate, game);
+						return;
+					}
 				}
+			}
+			else {
+				System.out.println("Uncorrect command. Please use examples for writing correct command.");
 			}
 		}
 	}
