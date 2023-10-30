@@ -25,9 +25,12 @@ public class GameSession {
 	
 	public void startGame() {
 		RenderingField.doRendering(this);
-		while (!isExploded) {
+		while (true) {
 			UserAction.makeTurn(this);
 			RenderingField.doRendering(this);
+			if (isExploded) {
+				break;
+			}
 		}
 	}
 	
@@ -36,7 +39,13 @@ public class GameSession {
 	}
 	
 	public String showCell(int colum, int row) {
-		if (!this.gameField.getGameField().get(new Coordinate(colum, row)).isVisible()) {
+		if (isExploded && this.gameField.getGameField().get(new Coordinate(colum, row)).isBomb()) {
+			return "*";
+		}
+		else if (isExploded) {
+			return Integer.toString(this.gameField.getGameField().get(new Coordinate(colum, row)).getStepsFromBomb());
+		}
+		else if (!this.gameField.getGameField().get(new Coordinate(colum, row)).isVisible()) {
 			return ".";
 		}
 		else if (this.gameField.getGameField().get(new Coordinate(colum, row)).isBomb()) {
