@@ -20,20 +20,25 @@ public class UserAction {
 			if (isCoordinate(userCommand, game)) {
 				Coordinate coordinate = new Coordinate(userCommand.split("-"));
 				
+				if (!game.getGameField().getGameField().get(coordinate).isVisible()) {
+					System.out.println("This is visible cell. Chouse another cell, please.");
+					continue;
+				}
+				
+				game.increaceCounterTurn();
+				game.getGameField().getGameField().get(coordinate).makeVisible();
+				
 				if (game.getCounterTurns() == 0) {
 					makeVisibleAreaForFirstTurn(coordinate, game);
 					openAllZeroCellClosedToChoese(coordinate, game);
-					game.increaceCounterTurn();
 					return;
 				}
 				else {
 					if (game.getGameField().getGameField().get(coordinate).isBomb()) {
-						game.getGameField().getGameField().get(coordinate).makeVisible();
 						game.makeExplosion();
 						return;
 					}
 					else {
-						game.getGameField().getGameField().get(coordinate).makeVisible();
 						openAllZeroCellClosedToChoese(coordinate, game);
 						return;
 					}
@@ -64,7 +69,6 @@ public class UserAction {
 	
 	private static void makeVisibleAreaForFirstTurn(Coordinate coordinate, GameSession game) {
 		game.getGameField().getGameField().get(coordinate).setStepsFromBomb(0);
-		game.getGameField().getGameField().get(coordinate).makeVisible();
 		
 		for (int row = -1; row <= 1; row++) {
 			for (int column = -1; column <= 1; column++) {
