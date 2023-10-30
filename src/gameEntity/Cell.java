@@ -58,6 +58,5 @@ public class Cell {
 
 	public void makeBeginingCell() {
 		this.isBeginingCell = true;
-		this.isVisible = true;
 	}
 }

@@ -22,6 +22,7 @@ public class UserAction {
 				
 				if (game.getCounterTurns() == 0) {
 					makeVisibleAreaForFirstTurn(coordinate, game);
+					openAllZeroCellClosedToChoese(coordinate, game);
 					game.increaceCounterTurn();
 					return;
 				}
@@ -34,7 +35,7 @@ public class UserAction {
 	
 	private void saveGame() {}
 	
-	private void openAllZeroCellClosedToChoese(Coordinate coordinate, GameSession game) {
+	private static void openAllZeroCellClosedToChoese(Coordinate coordinate, GameSession game) {
 		if (game.getGameField().getGameField().get(coordinate).getStepsFromBomb() != 0) {
 			return;
 		}
@@ -50,6 +51,9 @@ public class UserAction {
 	}
 	
 	private static void makeVisibleAreaForFirstTurn(Coordinate coordinate, GameSession game) {
+		game.getGameField().getGameField().get(coordinate).setStepsFromBomb(0);
+		game.getGameField().getGameField().get(coordinate).makeVisible();
+		
 		for (int row = -1; row <= 1; row++) {
 			for (int column = -1; column <= 1; column++) {
 				if (game.getGameField().getGameField().get(coordinate.shiftCoordinate(row, column)) != null) {
