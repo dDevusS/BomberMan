@@ -1,5 +1,12 @@
 package gameProcessing;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 public class Game {
 
 	public static void main(String[] args) {
@@ -50,6 +57,41 @@ public class Game {
 		}
 	}
 	
-	private static void continuePreviosGame() {}
+	private static void saveGame(GameSession game) {
+		try {
+			FileOutputStream fos = new FileOutputStream("GameSession.save");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(game);
+			
+			oos.close();
+		} 
+		catch (Exception e) {
+			String workingDirectiry = System.getProperty("User.dir");
+			String fileName = "GameSession.save";
+			String filePath = workingDirectiry + File.separator + fileName;
+			
+			File newFile = new File(filePath);
+			
+			try {
+				newFile.createNewFile();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			
+			saveGame(game);
+		}
+	}
 	
+	private static GameSession continuePreviosGame() {
+		try {
+			FileInputStream fis = new FileInputStream("GameSession.save");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			
+			ois.close();
+			return (GameSession)ois.readObject();
+		} 
+		catch (Exception e) {
+			return null;
+		}
+	}
 }

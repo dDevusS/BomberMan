@@ -1,10 +1,12 @@
 package gameProcessing;
 
+import java.io.Serializable;
+
 import gameEntity.Cell;
 import gameEntity.Coordinate;
 import gameEntity.GameField;
 
-public class GameSession {
+public class GameSession implements Serializable {
 
 	private int columns;
 	private int rows;
