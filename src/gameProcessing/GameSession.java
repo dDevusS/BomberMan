@@ -87,4 +87,8 @@ public class GameSession {
 	public Cell getCell(Coordinate coordinate) {
 		return gameField.getGameField().get(coordinate);
 	}
+
+	public boolean isExploded() {
+		return isExploded;
+	}
 }
