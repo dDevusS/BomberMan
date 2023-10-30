@@ -12,6 +12,11 @@ public class Coordinate {
 		this.row = row;
 	}
 	
+	public Coordinate(String[] arrayCoordinate) {
+		this.column = Integer.parseInt(arrayCoordinate[1]);
+		this.row = Integer.parseInt(arrayCoordinate[0]);
+	}
+	
 	public Coordinate shiftCoordinate(int y, int x) {
 		return new Coordinate(this.column + y, this.row + x);
 	}

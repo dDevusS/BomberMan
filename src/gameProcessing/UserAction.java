@@ -17,33 +17,38 @@ public class UserAction {
 			}
 		
 			if (isCoordinate(userCommand, game)) {
-				String[] arrayCoordinate = userCommand.split("-");
+				Coordinate coordinate = new Coordinate(userCommand.split("-"));
 				
 				if (game.getCounterTurns() == 0) {
-					makeVisibleAreaForFirstTurn(new Coordinate(Integer.parseInt(arrayCoordinate[0]), Integer.parseInt(arrayCoordinate[1])), game);
+					makeVisibleAreaForFirstTurn(coordinate, game);
 					game.increaceCounterTurn();
-					game.getGameField().createBombs(game.getColumns(), game.getRows(), game.getQuantityOfBombs());
 					return;
 				}
-				
-				
+				else {
+					
+				}
 			}
 		}
 	}
 	
 	private void saveGame() {}
 	
+	private void openAllZeroCellClosedToChoese(Coordinate coordinate, GameSession game) {
+		
+	}
+	
 	private static void makeVisibleAreaForFirstTurn(Coordinate coordinate, GameSession game) {
-		for (int y = -1; y <= 1; y++) {
-			for (int x = -1; x <= 1; x++) {
-				if (game.getGameField().getGameField().get(coordinate.shiftCoordinate(y, x)) != null) {
-					game.getGameField().getGameField().get(coordinate.shiftCoordinate(y, x)).makeBeginingCell();
+		for (int row = -1; row <= 1; row++) {
+			for (int column = -1; column <= 1; column++) {
+				if (game.getGameField().getGameField().get(coordinate.shiftCoordinate(row, column)) != null) {
+					game.getGameField().getGameField().get(coordinate.shiftCoordinate(row, column)).makeBeginingCell();
 				}
 			}
 		}
+		game.getGameField().createBombs(game.getColumns(), game.getRows(), game.getQuantityOfBombs());
 	}
 	
-	private static boolean isCoordinate(String userCommand, GameSession game) {	
+	private static boolean isCoordinate(String userCommand, GameSession game) {
 		String[] command = userCommand.split("-");
 		
 		if (command.length == 2) {

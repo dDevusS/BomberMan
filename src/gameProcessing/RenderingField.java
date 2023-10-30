@@ -51,8 +51,8 @@ public class RenderingField {
 		
 		case 4 : System.out.print("  For exit type \"EXIT\"."); break;
 		
-		case 6 : System.out.print("  Enter coordinate: type coordinate like y-x."); break;
-		case 7 : System.out.print("  !Use \"-\" beetwen \"y\" and \"x\", where \"y\" is column number and \"x\" is row number."); break;
+		case 6 : System.out.print("  Enter coordinate: type coordinate like row-column."); break;
+		case 7 : System.out.print("  !Use \"-\" beetwen \"row\" and \"column\", where \"row\" is column number and \"column\" is row number."); break;
 		}
 	}
 }
