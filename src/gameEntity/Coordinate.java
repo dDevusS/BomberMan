@@ -13,8 +13,8 @@ public class Coordinate {
 	}
 	
 	public Coordinate(String[] arrayCoordinate) {
-		this.column = Integer.parseInt(arrayCoordinate[1]);
-		this.row = Integer.parseInt(arrayCoordinate[0]);
+		this.column = Integer.parseInt(arrayCoordinate[1].replaceAll("\\s", ""));
+		this.row = Integer.parseInt(arrayCoordinate[0].replaceAll("\\s", ""));
 	}
 	
 	public Coordinate shiftCoordinate(int y, int x) {

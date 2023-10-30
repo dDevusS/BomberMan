@@ -84,11 +84,11 @@ public class UserAction {
 		
 		if (command.length == 2) {
 			try {
-				Integer.parseInt(command[0]);
-				Integer.parseInt(command[1]);
+				Integer.parseInt(command[0].replaceAll("\\s", ""));
+				Integer.parseInt(command[1].replaceAll("\\s", ""));
 				
-				if (Integer.parseInt(command[0]) > 0 && Integer.parseInt(command[0]) <= game.getColumns() ||
-						Integer.parseInt(command[0]) > 0 && Integer.parseInt(command[0]) <= game.getColumns()) {
+				if (Integer.parseInt(command[0].replaceAll("\\s", "")) > 0 && Integer.parseInt(command[0].replaceAll("\\s", "")) <= game.getColumns() ||
+						Integer.parseInt(command[0].replaceAll("\\s", "")) > 0 && Integer.parseInt(command[0].replaceAll("\\s", "")) <= game.getColumns()) {
 					return true;
 				}
 			} 

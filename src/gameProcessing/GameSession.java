@@ -32,6 +32,7 @@ public class GameSession {
 				break;
 			}
 		}
+		Game.launchMainMenu();
 	}
 	
 	public GameField getGameField() {
