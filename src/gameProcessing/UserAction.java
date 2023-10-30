@@ -9,6 +9,7 @@ public class UserAction {
 	public static Scanner input = new Scanner(System.in);
 	
 	public static void makeTurn(GameSession game) {
+		//TODO: проверка на использованные ходы. Используй видимость.
 		while (true) {
 			String userCommand = input.nextLine();
 			
@@ -34,7 +35,18 @@ public class UserAction {
 	private void saveGame() {}
 	
 	private void openAllZeroCellClosedToChoese(Coordinate coordinate, GameSession game) {
-		
+		if (game.getGameField().getGameField().get(coordinate).getStepsFromBomb() != 0) {
+			return;
+		}
+		for (int row = -1; row <= 1; row++) {
+			for (int column = -1; column <= 1; column++) {
+				if (game.getGameField().getGameField().get(coordinate.shiftCoordinate(row, column)) != null &&
+						!game.getGameField().getGameField().get(coordinate.shiftCoordinate(row, column)).isVisible()) {
+					game.getGameField().getGameField().get(coordinate.shiftCoordinate(row, column)).makeVisible();
+					openAllZeroCellClosedToChoese(coordinate.shiftCoordinate(row, column), game);
+				}
+			}
+		}
 	}
 	
 	private static void makeVisibleAreaForFirstTurn(Coordinate coordinate, GameSession game) {
