@@ -25,8 +25,10 @@ public class GameSession {
 	
 	public void startGame() {
 		RenderingField.doRendering(this);
-		UserAction.makeTurn(this);
-		RenderingField.doRendering(this);
+		while (!isExploded) {
+			UserAction.makeTurn(this);
+			RenderingField.doRendering(this);
+		}
 	}
 	
 	public GameField getGameField() {

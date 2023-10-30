@@ -9,7 +9,6 @@ public class UserAction {
 	public static Scanner input = new Scanner(System.in);
 	
 	public static void makeTurn(GameSession game) {
-		//TODO: проверка на использованные ходы. Используй видимость.
 		while (true) {
 			String userCommand = input.nextLine();
 			
@@ -20,7 +19,7 @@ public class UserAction {
 			if (isCoordinate(userCommand, game)) {
 				Coordinate coordinate = new Coordinate(userCommand.split("-"));
 				
-				if (!game.getGameField().getGameField().get(coordinate).isVisible()) {
+				if (game.getGameField().getGameField().get(coordinate).isVisible()) {
 					System.out.println("This is visible cell. Chouse another cell, please.");
 					continue;
 				}
@@ -28,7 +27,7 @@ public class UserAction {
 				game.increaceCounterTurn();
 				game.getGameField().getGameField().get(coordinate).makeVisible();
 				
-				if (game.getCounterTurns() == 0) {
+				if (game.getCounterTurns() == 1) {
 					makeVisibleAreaForFirstTurn(coordinate, game);
 					openAllZeroCellClosedToChoese(coordinate, game);
 					return;
