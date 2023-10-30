@@ -49,8 +49,6 @@ public class UserAction {
 		}
 	}
 	
-	private void saveGame() {}
-	
 	private static void openAllZeroCellClosedToChoese(Coordinate coordinate, GameSession game) {
 		if (game.getCell(coordinate).getStepsFromBomb() != 0) {
 			return;

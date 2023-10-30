@@ -48,11 +48,12 @@ public class RenderingField {
 		
 		case 1 : System.out.print("  Quantity of bombs: " + game.getQuantityOfBombs()); break;
 		case 2 : System.out.print("  Hidden fields: "); break;
+		case 3 : System.out.print("  Your turn: " + game.getCounterTurns()); break;
 		
-		case 4 : System.out.print(!game.isExploded() ? "  For exit type \"EXIT\"." : "  Press any key to continue..."); break;
+		case 5 : System.out.print(!game.isExploded() ? "  For exit type \"EXIT\"." : ""); break;
 		
-		case 6 : System.out.print(!game.isExploded() ? "  Enter coordinate: type coordinate like row-column." : ""); break;
-		case 7 : System.out.print(!game.isExploded() ? "  !Use \"-\" beetwen \"row\" and \"column\", where \"row\" is column number and \"column\" is row number." : ""); break;
+		case 7 : System.out.print(!game.isExploded() ? "  Enter coordinate: type coordinate like row-column." : ""); break;
+		case 8 : System.out.print(!game.isExploded() ? "  !Use \"-\" beetwen \"row\" and \"column\", where \"row\" is column number and \"column\" is row number." : ""); break;
 		}
 	}
 }

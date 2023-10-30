@@ -1,7 +1,5 @@
 package gameProcessing;
 
-import java.util.HashMap;
-
 import gameEntity.Cell;
 import gameEntity.Coordinate;
 import gameEntity.GameField;
@@ -11,7 +9,7 @@ public class GameSession {
 	private int columns;
 	private int rows;
 	private int quantityOfBombs;
-	private int visibleCell;
+	private int visibleCells;
 	private int counterTurns = 0;
 	private GameField gameField;
 	private boolean isExploded = false;
