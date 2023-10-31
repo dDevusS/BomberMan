@@ -56,4 +56,35 @@ public class RenderingField {
 		case 8 : System.out.print(!game.isExploded() ? "  !Use \"-\" beetwen \"row\" and \"column\", where \"row\" is column number and \"column\" is row number." : ""); break;
 		}
 	}
+	
+	private static void renderHead(GameSession game) {
+		System.out.print("   ");
+		for (int column = 1; column <= game.getColumns(); column++) {
+			if (column < 10) {
+				System.out.print("  " + column + " ");
+			}
+			else {
+				System.out.print(" " + column + " ");
+			}
+		}
+		doRenderingLegend(game, -1);
+		System.out.print("\n   ");
+		for (int column = 1; column <= game.getColumns(); column++) {
+			System.out.print("----");
+		}
+		System.out.print("\n");
+	}
+	
+	private static void renderRowNumber(int row) {
+		if (row < 10) {
+			System.out.print(" " + row + "|");
+		}
+		else {
+			System.out.print(row + "|");
+		}
+	}
+	
+	private static void renderCell(GameSession game, int row) {
+		
+	}
 }
