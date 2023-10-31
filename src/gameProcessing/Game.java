@@ -20,14 +20,15 @@ public class Game {
 			Start new game (press s)
 			Exit (press e)
 				""");
-		
-		switch (UserAction.input.nextLine().toLowerCase()) {
-			//case "1" : startNewGame(); break;
-			case "s" : startNewGame(); break;
-			//case "2" : startNewGame(); break;
-			case "e" : System.exit(0); break;
-			default :
-				System.out.println("Uncorrect command.");
+		while (true) {
+			switch (UserAction.input.nextLine().toLowerCase()) {
+				//case "1" : startNewGame(); break;
+				case "s" : startNewGame(); break;
+				//case "2" : startNewGame(); break;
+				case "e" : System.exit(0); break;
+				default :
+					System.out.println("Uncorrect command.");
+			}
 		}
 	}
 	
@@ -57,28 +58,26 @@ public class Game {
 		}
 	}
 	
-	private static void saveGame(GameSession game) {
+	public static void saveGame(GameSession game) {
 		try {
-			FileOutputStream fos = new FileOutputStream("GameSession.save");
+			String workingDirectiry = System.getProperty("user.dir");
+			String fileName = "GameSession.save";
+			String filePath = workingDirectiry + File.separator + fileName;
+			
+			File newFile = new File(filePath);
+			
+			if (!newFile.exists()) {
+				newFile.createNewFile();
+			}
+			
+			FileOutputStream fos = new FileOutputStream(newFile);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(game);
 			
 			oos.close();
 		} 
 		catch (Exception e) {
-			String workingDirectiry = System.getProperty("User.dir");
-			String fileName = "GameSession.save";
-			String filePath = workingDirectiry + File.separator + fileName;
-			
-			File newFile = new File(filePath);
-			
-			try {
-				newFile.createNewFile();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			
-			saveGame(game);
+			e.printStackTrace();
 		}
 	}
 	

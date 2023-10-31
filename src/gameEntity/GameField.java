@@ -1,9 +1,10 @@
 package gameEntity;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Random;
 
-public class GameField {
+public class GameField implements Serializable {
 
 	private HashMap<Coordinate, Cell> gameField = new HashMap<>();
 

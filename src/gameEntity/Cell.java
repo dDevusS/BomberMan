@@ -1,6 +1,8 @@
 package gameEntity;
 
-public class Cell {
+import java.io.Serializable;
+
+public class Cell implements Serializable {
 	
 	private Coordinate coordinate;
 	private int stepsFromBomb = 0;

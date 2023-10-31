@@ -1,8 +1,9 @@
 package gameEntity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Coordinate {
+public class Coordinate implements Serializable {
 	
 	private int column;
 	private int row;

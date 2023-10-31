@@ -13,7 +13,7 @@ public class UserAction {
 			String userCommand = input.nextLine();
 			
 			switch (userCommand) {
-			case "exit" : System.exit(0); break;
+			case "exit" : Game.saveGame(game); System.exit(0); break;
 			}
 		
 			if (isCoordinate(userCommand, game)) {

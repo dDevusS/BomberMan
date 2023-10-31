@@ -14,6 +14,9 @@ local.properties
 .loadpath
 .recommenders
 
+## Save files ##
+*.save
+
 # External tool builders
 .externalToolBuilders/
 
