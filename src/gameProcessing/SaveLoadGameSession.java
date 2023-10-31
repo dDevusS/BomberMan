@@ -7,24 +7,17 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class SaveLoadGameSession {
+	
+	private static File file = new File("GameSession.save");
 
 	public static void saveGame(GameSession game) {
-		try {
-			String workingDirectiry = System.getProperty("user.dir");
-			String fileName = "GameSession.save";
-			String filePath = workingDirectiry + File.separator + fileName;
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
 			
-			File newFile = new File(filePath);
-			
-			if (!newFile.exists()) {
-				newFile.createNewFile();
+			if (!file.exists()) {
+				file.createNewFile();
 			}
 			
-			FileOutputStream fos = new FileOutputStream(newFile);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(game);
-			
-			oos.close();
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
@@ -32,14 +25,8 @@ public class SaveLoadGameSession {
 	}
 
 	public static GameSession loadGame() {
-		try {
-			FileInputStream fis = new FileInputStream("GameSession.save");
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			GameSession game = (GameSession)ois.readObject();
-			
-			ois.close();
-			
-			return game;
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+			return (GameSession)ois.readObject();
 		} 
 		catch (Exception e) {
 			return null;
