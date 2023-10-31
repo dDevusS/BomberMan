@@ -30,6 +30,7 @@ public class UserAction {
 				if (game.getCounterTurns() == 1) {
 					makeVisibleAreaForFirstTurn(coordinate, game);
 					openAllZeroCellClosedToChoese(coordinate, game);
+					return;
 				}
 				else {
 					if (game.getCell(coordinate).isBomb()) {
