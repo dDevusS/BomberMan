@@ -17,14 +17,26 @@ public class Game {
 		System.out.println("""
 				BomberMan.
 			------------------
+			""");
+		
+		String workingDirectiry = System.getProperty("user.dir");
+		String fileName = "GameSession.save";
+		String filePath = workingDirectiry + File.separator + fileName;
+		
+		File newFile = new File(filePath);
+		
+		if (newFile.exists()) {
+			System.out.println("Continue game (Press c)");
+		}
+		
+		System.out.println("""
 			Start new game (press s)
 			Exit (press e)
 				""");
 		while (true) {
 			switch (UserAction.input.nextLine().toLowerCase()) {
-				//case "1" : startNewGame(); break;
 				case "s" : startNewGame(); break;
-				//case "2" : startNewGame(); break;
+				case "c" : loadGame().startGame();; break;
 				case "e" : System.exit(0); break;
 				default :
 					System.out.println("Uncorrect command.");
@@ -81,13 +93,15 @@ public class Game {
 		}
 	}
 	
-	private static GameSession continuePreviosGame() {
+	private static GameSession loadGame() {
 		try {
 			FileInputStream fis = new FileInputStream("GameSession.save");
 			ObjectInputStream ois = new ObjectInputStream(fis);
+			GameSession game = (GameSession)ois.readObject();
 			
 			ois.close();
-			return (GameSession)ois.readObject();
+			
+			return game;
 		} 
 		catch (Exception e) {
 			return null;
