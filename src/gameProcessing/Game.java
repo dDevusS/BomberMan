@@ -1,11 +1,6 @@
 package gameProcessing;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
 public class Game {
 
@@ -25,7 +20,7 @@ public class Game {
 		
 		File newFile = new File(filePath);
 		
-		if (newFile.exists()) {
+		if (newFile.exists() && SaveLoadGameSession.loadGame() != null) {
 			System.out.println("Continue game (Press c)");
 		}
 		
@@ -36,7 +31,7 @@ public class Game {
 		while (true) {
 			switch (UserAction.input.nextLine().toLowerCase()) {
 				case "s" : startNewGame(); break;
-				case "c" : loadGame().startGame();; break;
+				case "c" : SaveLoadGameSession.loadGame().startGame();; break;
 				case "e" : System.exit(0); break;
 				default :
 					System.out.println("Uncorrect command.");
@@ -67,44 +62,6 @@ public class Game {
 			default :
 				System.out.println("Uncorrect command.");
 			}
-		}
-	}
-	
-	public static void saveGame(GameSession game) {
-		try {
-			String workingDirectiry = System.getProperty("user.dir");
-			String fileName = "GameSession.save";
-			String filePath = workingDirectiry + File.separator + fileName;
-			
-			File newFile = new File(filePath);
-			
-			if (!newFile.exists()) {
-				newFile.createNewFile();
-			}
-			
-			FileOutputStream fos = new FileOutputStream(newFile);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(game);
-			
-			oos.close();
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private static GameSession loadGame() {
-		try {
-			FileInputStream fis = new FileInputStream("GameSession.save");
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			GameSession game = (GameSession)ois.readObject();
-			
-			ois.close();
-			
-			return game;
-		} 
-		catch (Exception e) {
-			return null;
 		}
 	}
 }

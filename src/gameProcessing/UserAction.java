@@ -13,7 +13,7 @@ public class UserAction {
 			String userCommand = input.nextLine();
 			
 			switch (userCommand) {
-			case "exit" : Game.saveGame(game); System.exit(0); break;
+			case "exit" : SaveLoadGameSession.saveGame(game); System.exit(0); break;
 			}
 		
 			if (isCoordinate(userCommand, game)) {
@@ -30,7 +30,6 @@ public class UserAction {
 				if (game.getCounterTurns() == 1) {
 					makeVisibleAreaForFirstTurn(coordinate, game);
 					openAllZeroCellClosedToChoese(coordinate, game);
-					return;
 				}
 				else {
 					if (game.getCell(coordinate).isBomb()) {
