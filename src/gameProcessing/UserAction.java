@@ -13,7 +13,10 @@ public class UserAction {
 			String userCommand = input.nextLine();
 			
 			switch (userCommand) {
-			case "exit" : SaveLoadGameSession.saveGame(game); System.exit(0); break;
+			case "exit" :
+				SaveLoadGameSession.saveGame(game);
+				System.exit(0);
+				break;
 			}
 		
 			if (isCoordinate(userCommand, game)) {
@@ -24,22 +27,8 @@ public class UserAction {
 					continue;
 				}
 				
-				game.increaceCounterTurn();
-				game.getCell(coordinate).makeVisible(game);
-				
-				if (game.getCounterTurns() == 1) {
-					makeVisibleAreaForFirstTurn(coordinate, game);
-					openAllZeroCellClosedToChoese(coordinate, game);
-					return;
-				}
-				else if (game.getCell(coordinate).isBomb()){
-					game.makeExplosion();
-					return;
-				}
-				else {
-					openAllZeroCellClosedToChoese(coordinate, game);
-					return;
-				}
+				processValidCoordinate(game, coordinate);
+				break;
 			}
 			else {
 				System.out.println("Uncorrect command. Please use examples for writing correct command.");
@@ -91,5 +80,21 @@ public class UserAction {
 			}
 		}
 		return false;
+	}
+	
+	private static void processValidCoordinate(GameSession game, Coordinate coordinate) {
+		game.increaceCounterTurn();
+		game.getCell(coordinate).makeVisible(game);
+		
+		if (game.getCounterTurns() == 1) {
+			makeVisibleAreaForFirstTurn(coordinate, game);
+			openAllZeroCellClosedToChoese(coordinate, game);
+		}
+		else if (game.getCell(coordinate).isBomb()){
+			game.makeExplosion();
+		}
+		else {
+			openAllZeroCellClosedToChoese(coordinate, game);
+		}
 	}
 }
