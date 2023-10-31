@@ -40,20 +40,20 @@ public class GameSession implements Serializable {
 	}
 	
 	public String showCell(int colum, int row) {
-		if (isExploded && this.gameField.getGameField().get(new Coordinate(colum, row)).isBomb()) {
+		if (isExploded && getCell(new Coordinate(colum, row)).isBomb()) {
 			return "*";
 		}
 		else if (isExploded) {
-			return Integer.toString(this.gameField.getGameField().get(new Coordinate(colum, row)).getStepsFromBomb());
+			return Integer.toString(getCell(new Coordinate(colum, row)).getStepsFromBomb());
 		}
-		else if (!this.gameField.getGameField().get(new Coordinate(colum, row)).isVisible()) {
+		else if (!getCell(new Coordinate(colum, row)).isVisible()) {
 			return ".";
 		}
-		else if (this.gameField.getGameField().get(new Coordinate(colum, row)).isBomb()) {
+		else if (getCell(new Coordinate(colum, row)).isBomb()) {
 			return "*";
 		}
 		
-		return Integer.toString(this.gameField.getGameField().get(new Coordinate(colum, row)).getStepsFromBomb());
+		return Integer.toString(getCell(new Coordinate(colum, row)).getStepsFromBomb());
 	}
 
 	public boolean isWon() {
