@@ -53,7 +53,7 @@ public class UserAction {
 		}
 		for (int row = -1; row <= 1; row++) {
 			for (int column = -1; column <= 1; column++) {
-				if (game.getCell(coordinate.shiftCoordinate(row, column)) != null &&
+				if (game.getCell(coordinate.shiftCoordinate(row, column)) != null && 
 						!game.getCell(coordinate.shiftCoordinate(row, column)).isVisible()) {
 					game.getCell(coordinate.shiftCoordinate(row, column)).makeVisible(game);
 					openAllZeroCellClosedToChoese(coordinate.shiftCoordinate(row, column), game);
@@ -80,16 +80,14 @@ public class UserAction {
 		
 		if (command.length == 2) {
 			try {
-				Integer.parseInt(command[0].replaceAll("\\s", ""));
-				Integer.parseInt(command[1].replaceAll("\\s", ""));
+				int row = Integer.parseInt(command[0].trim());
+				int column = Integer.parseInt(command[1].trim());
 				
-				if (Integer.parseInt(command[0].replaceAll("\\s", "")) > 0 && Integer.parseInt(command[0].replaceAll("\\s", "")) <= game.getColumns() ||
-						Integer.parseInt(command[0].replaceAll("\\s", "")) > 0 && Integer.parseInt(command[0].replaceAll("\\s", "")) <= game.getColumns()) {
+				if (row > 0 && row <= game.getRows() || column > 0 && column <= game.getColumns()) {
 					return true;
 				}
 			} 
 			catch (NumberFormatException e) {
-				return false;
 			}
 		}
 		return false;
