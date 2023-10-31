@@ -19,9 +19,9 @@ public class GameField implements Serializable {
 	}
 	
 	private void createClearField(int columns, int rows) {
-		for (int column = 1; column <= columns; column++) {
+		for (int ro = 1; ro <= columns; ro++) {
 			for (int row = 1; row <= rows; row++) {
-				gameField.put(new Coordinate(column, row), new Cell(column, row, 0));
+				gameField.put(new Coordinate(ro, row), new Cell(ro, row, 0));
 			}
 		}
 	}
