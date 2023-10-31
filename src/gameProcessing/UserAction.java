@@ -25,7 +25,7 @@ public class UserAction {
 				}
 				
 				game.increaceCounterTurn();
-				game.getCell(coordinate).makeVisible();
+				game.getCell(coordinate).makeVisible(game);
 				
 				if (game.getCounterTurns() == 1) {
 					makeVisibleAreaForFirstTurn(coordinate, game);
@@ -56,7 +56,7 @@ public class UserAction {
 			for (int column = -1; column <= 1; column++) {
 				if (game.getCell(coordinate.shiftCoordinate(row, column)) != null &&
 						!game.getCell(coordinate.shiftCoordinate(row, column)).isVisible()) {
-					game.getCell(coordinate.shiftCoordinate(row, column)).makeVisible();
+					game.getCell(coordinate.shiftCoordinate(row, column)).makeVisible(game);
 					openAllZeroCellClosedToChoese(coordinate.shiftCoordinate(row, column), game);
 				}
 			}

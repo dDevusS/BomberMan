@@ -47,7 +47,7 @@ public class RenderingField {
 		case -1 : System.out.print(!game.isExploded() ? "  Bomberman." : "  Bomberman is EXPLODED!!!"); break;
 		
 		case 1 : System.out.print("  Quantity of bombs: " + game.getQuantityOfBombs()); break;
-		case 2 : System.out.print("  Hidden fields: "); break;
+		case 2 : System.out.print("  Hidden fields: " + game.getHiddenCells()); break;
 		case 3 : System.out.print("  Your turn: " + game.getCounterTurns()); break;
 		
 		case 5 : System.out.print(!game.isExploded() ? "  For exit type \"EXIT\"." : ""); break;

@@ -2,8 +2,10 @@ package gameEntity;
 
 import java.io.Serializable;
 
+import gameProcessing.GameSession;
+
 public class Cell implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 	
 	private Coordinate coordinate;
@@ -48,8 +50,9 @@ public class Cell implements Serializable {
 		return isVisible;
 	}
 	
-	public void makeVisible() {
+	public void makeVisible(GameSession game) {
 		this.isVisible = true;
+		game.decriseHiddenCells();
 	}
 
 	public void doVisible(boolean isVisible) {

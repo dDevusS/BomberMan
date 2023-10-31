@@ -91,4 +91,12 @@ public class GameSession implements Serializable {
 	public boolean isExploded() {
 		return isExploded;
 	}
+
+	public void decriseHiddenCells() {
+		hiddenCells--;
+	}
+
+	public int getHiddenCells() {
+		return hiddenCells;
+	}
 }
