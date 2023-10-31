@@ -13,7 +13,7 @@ public class GameSession implements Serializable {
 	private int columns;
 	private int rows;
 	private int quantityOfBombs;
-	private int visibleCells;
+	private int hiddenCells;
 	private int counterTurns = 0;
 	private GameField gameField;
 	private boolean isExploded = false;
@@ -23,16 +23,14 @@ public class GameSession implements Serializable {
 		this.rows = rows;
 		this.quantityOfBombs = quantutyOfBombs;
 		this.gameField = new GameField(columns, rows);
+		this.hiddenCells = columns * rows - quantutyOfBombs;
 	}
 	
 	public void startGame() {
 		RenderingField.doRendering(this);
-		while (true) {
+		while (!isExploded & !isWon()) {
 			UserAction.makeTurn(this);
 			RenderingField.doRendering(this);
-			if (isExploded) {
-				break;
-			}
 		}
 		Game.launchMainMenu();
 	}
@@ -58,9 +56,9 @@ public class GameSession implements Serializable {
 		return Integer.toString(this.gameField.getGameField().get(new Coordinate(colum, row)).getStepsFromBomb());
 	}
 
-	public void isPlay() {}
-	
-	public void isPause() {}
+	public boolean isWon() {
+		return hiddenCells == 0;
+	}
 
 	public int getColumns() {
 		return columns;
