@@ -32,15 +32,13 @@ public class UserAction {
 					openAllZeroCellClosedToChoese(coordinate, game);
 					return;
 				}
+				else if (game.getCell(coordinate).isBomb()){
+					game.makeExplosion();
+					return;
+				}
 				else {
-					if (game.getCell(coordinate).isBomb()) {
-						game.makeExplosion();
-						return;
-					}
-					else {
-						openAllZeroCellClosedToChoese(coordinate, game);
-						return;
-					}
+					openAllZeroCellClosedToChoese(coordinate, game);
+					return;
 				}
 			}
 			else {
