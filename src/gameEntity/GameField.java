@@ -6,6 +6,8 @@ import java.util.Random;
 
 public class GameField implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private HashMap<Coordinate, Cell> gameField = new HashMap<>();
 
 	public GameField(int columns, int rows) {

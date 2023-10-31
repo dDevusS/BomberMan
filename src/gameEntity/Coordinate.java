@@ -5,6 +5,8 @@ import java.util.Objects;
 
 public class Coordinate implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+	
 	private int column;
 	private int row;
 	
