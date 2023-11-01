@@ -72,10 +72,6 @@ public class RenderingField {
 		}
 	}
 	
-	private static int adaptRowToCoordinate(int row) {
-		return row - row / 2;
-	}
-	
 	private static void printElementOfField(Object element) {
 		String elementString = element.toString();
 		if (elementString.length() == 1) {
