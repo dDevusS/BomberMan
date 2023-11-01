@@ -65,10 +65,10 @@ public class RenderingField {
 	
 	private static void renderCell(GameSession game, int row, int column) {
 		if (!game.isExploded()) {
-		printElementOfField(game.getCell(column, row));
+		printElementOfField(game.getCell(row, column));
 		}
 		else {
-			printElementOfField(game.getCell(column, row).showCell());
+			printElementOfField(game.getCell(row, column).showCell());
 		}
 	}
 	

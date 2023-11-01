@@ -10,19 +10,19 @@ public class GameSession implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private int columns;
 	private int rows;
+	private int columns;
 	private int quantityOfBombs;
 	private int hiddenCells;
 	private int counterTurns = 0;
 	private GameField gameField;
 	private boolean isExploded = false;
 	
-	public GameSession(int columns, int rows, int quantutyOfBombs) {
-		this.columns = columns;
+	public GameSession(int rows, int columns, int quantutyOfBombs) {
 		this.rows = rows;
+		this.columns = columns;
 		this.quantityOfBombs = quantutyOfBombs;
-		this.gameField = new GameField(columns, rows);
+		this.gameField = new GameField(rows, columns);
 		this.hiddenCells = columns * rows - quantutyOfBombs;
 	}
 	
@@ -67,8 +67,8 @@ public class GameSession implements Serializable {
 		this.isExploded = true;
 	}
 	
-	public Cell getCell(int column, int row) {
-		return gameField.getGameField().get(new Coordinate(column, row));
+	public Cell getCell(int row, int column) {
+		return gameField.getGameField().get(new Coordinate(row, column));
 	}
 	
 	public Cell getCell(Coordinate coordinate) {

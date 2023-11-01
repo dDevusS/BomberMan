@@ -72,7 +72,7 @@ public class UserAction {
 				int row = Integer.parseInt(command[0].trim());
 				int column = Integer.parseInt(command[1].trim());
 				
-				if (row > 0 && row <= game.getRows() || column > 0 && column <= game.getColumns()) {
+				if (row > 0 && row <= game.getRows() && column > 0 && column <= game.getColumns()) {
 					return true;
 				}
 			} 
