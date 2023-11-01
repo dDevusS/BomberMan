@@ -21,7 +21,7 @@ public class GameField implements Serializable {
 	private void createClearField(int rows, int columns) {
 		for (int row = 1; row <= rows; row++) {
 			for (int column = 1; column <= columns; column++) {
-				gameField.put(new Coordinate(row, column), new Cell(row, column, 0));
+				gameField.put(new Coordinate(row, column), new Cell(row, column));
 			}
 		}
 	}
@@ -31,19 +31,19 @@ public class GameField implements Serializable {
 		int counterBombs = 0;
 
 		while (counterBombs < quantityOfBombs) {
-			int row = random.nextInt(1 , rows);
-			int column = random.nextInt(1, columns);
+			int row = random.nextInt(1 , rows + 1);
+			int column = random.nextInt(1, columns + 1);
 			Coordinate randomCoordinate = new Coordinate(row, column);
 
 			if (!gameField.get(randomCoordinate).isBomb() && !gameField.get(randomCoordinate).isBeginingCell()) {
 				gameField.get(randomCoordinate).setStepsFromBomb(9);
 				counterBombs++;
 
-				for (int y = 1; y >= -1; y--) {
+				for (int y = -1; y <= 1; y++) {
 					for (int x = -1; x <= 1; x++) {
-						if (gameField.get(new Coordinate(column, row).shiftCoordinate(y, x)) != null && 
-								!gameField.get(new Coordinate(column, row).shiftCoordinate(y, x)).isBomb()) {
-							gameField.get(new Coordinate(column, row).shiftCoordinate(y, x)).plusStep();
+						if (gameField.get(randomCoordinate.shiftCoordinate(y, x)) != null && 
+								!gameField.get(randomCoordinate.shiftCoordinate(y, x)).isBomb()) {
+							gameField.get(randomCoordinate.shiftCoordinate(y, x)).plusStep();
 						}
 					}
 				}

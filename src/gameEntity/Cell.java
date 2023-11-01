@@ -14,9 +14,8 @@ public class Cell implements Serializable {
 	private boolean isVisible = false;
 	private boolean isBeginingCell = false;
 	
-	Cell(int row, int column, int stepsFromBomb) {
+	Cell(int row, int column) {
 		this.coordinate = new Coordinate(row, column);
-		this.stepsFromBomb = stepsFromBomb;
 		
 		if (stepsFromBomb == 9) {
 			this.isBomb = true;

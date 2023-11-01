@@ -26,7 +26,7 @@ public class Coordinate implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(column, row);
+		return Objects.hash(row, column);
 	}
 
 	@Override
