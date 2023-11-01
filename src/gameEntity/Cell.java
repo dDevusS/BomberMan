@@ -13,6 +13,7 @@ public class Cell implements Serializable {
 	private boolean isBomb = false;
 	private boolean isVisible = false;
 	private boolean isBeginingCell = false;
+	private String userMarker = null;
 	
 	Cell(int row, int column) {
 		this.coordinate = new Coordinate(row, column);
@@ -52,6 +53,7 @@ public class Cell implements Serializable {
 	public void makeVisible(GameSession game) {
 		this.isVisible = true;
 		game.decriseHiddenCells();
+		this.userMarker = null;
 	}
 
 	public boolean isBeginingCell() {
@@ -64,7 +66,10 @@ public class Cell implements Serializable {
 	
 	@Override
 	public String toString() {
-		if (!isVisible) {
+		if (userMarker != null) {
+			return userMarker;
+		}
+		else if (!isVisible) {
 			return ".";
 		}
 		else if (isBomb) {
@@ -80,5 +85,9 @@ public class Cell implements Serializable {
 		else {
 			return Integer.toString(stepsFromBomb);
 		}
+	}
+	
+	public void makeMark(String userMark) {
+		this.userMarker = userMark;
 	}
 }

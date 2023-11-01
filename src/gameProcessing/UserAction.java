@@ -12,11 +12,20 @@ public class UserAction {
 		while (true) {
 			String userCommand = input.nextLine();
 			
-			switch (userCommand) {
+			switch (userCommand.toLowerCase()) {
 			case "exit" :
 				ProcessingSaveGame.saveGame(game);
 				System.exit(0);
 				break;
+			case "unsure" :
+				makeUserMarker(game, "?");
+				return;
+			case "bomb" :
+				makeUserMarker(game, "X");
+				return;
+			case "delete" :
+				makeUserMarker(game, null);
+				return;
 			}
 			
 			Coordinate coordinate = convertToCoordinate(userCommand, game);
@@ -26,6 +35,10 @@ public class UserAction {
 				if (game.getCell(coordinate).isVisible()) {
 					System.out.println("This is visible cell. Chouse another cell, please.");
 					continue;
+				}
+				else if (game.getCell(coordinate).toString() == "X") {
+					System.out.println("Be careful! You marked this like bomb.");
+					return;
 				}
 				
 				processValidCoordinate(game, coordinate);
@@ -96,6 +109,18 @@ public class UserAction {
 		}
 		else {
 			openAllZeroCellClosedToChoese(coordinate, game);
+		}
+	}
+	
+	private static void makeUserMarker(GameSession game, String userMarker) {
+		String userCommand = input.nextLine();
+		Coordinate coordinate = convertToCoordinate(userCommand, game);
+		
+		if (coordinate != null && !game.getCell(coordinate).isVisible()) {
+			game.getCell(coordinate).makeMark(userMarker);
+		}
+		else {
+			System.out.println("Uncorrect command. Please use examples for writing correct command.");
 		}
 	}
 }
