@@ -4,7 +4,7 @@ public class RenderingField {
 	
 	public static void renderGameSession(GameSession game) {
 		renderHead(game.getColumns());
-		for (int row = 1; row <= game.getRows(); row++) {
+		for (int row = 1; row <= game.getRows() * 2; row++) {
 			renderRow(game, row);
 		}
 	}
@@ -42,12 +42,21 @@ public class RenderingField {
 	}
 	
 	private static void renderRow(GameSession game, int row) {
-		renderRowNumber(row);
-		for (int column = 1; column <= game.getColumns(); column++) {
-			renderCell(game, row, column);
+		if (row % 2 != 0) {
+			renderRowNumber(adaptRowToCoordinate(row));
+			for (int column = 1; column <= game.getColumns(); column++) {
+				renderCell(game, adaptRowToCoordinate(row), column);
+			}
+			renderLegend(game, row);
 		}
-		renderLegend(game, row);
-		System.out.println(row < game.getRows() ? "\n  |" : "\n");
+		else {
+			System.out.print(row < game.getRows() * 2 ? "\n  |" : "\n");
+			for (int column = 1; column <= game.getColumns(); column++) {
+				System.out.print("    ");
+			}
+			renderLegend(game, row);
+			System.out.print("\n");
+		}
 	}
 	
 	private static void renderRowNumber(int row) {
@@ -61,5 +70,9 @@ public class RenderingField {
 	
 	private static void renderCell(GameSession game, int row, int column) {
 			System.out.print("  " + game.showCell(column, row) + " ");
+	}
+	
+	private static int adaptRowToCoordinate(int row) {
+		return row - row / 2;
 	}
 }
