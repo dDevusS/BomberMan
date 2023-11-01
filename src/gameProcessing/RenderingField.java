@@ -17,10 +17,11 @@ public class RenderingField {
 		case 4 : System.out.print("  Hidden fields: " + game.getHiddenCells()); break;
 		case 5 : System.out.print("  Your turn: " + game.getCounterTurns()); break;
 		
-		case 7 : System.out.print(!game.isExploded() ? "  For exit type \"EXIT\"." : ""); break;
+		case 7 : System.out.print(!game.isExploded() ? "  For exit and save type \"EXIT\"." : game.isWon() ? "YOU WIN!!! CONGRATULATIONS" : ""); break;
 		
 		case 9 : System.out.print(!game.isExploded() ? "  Enter coordinate: type coordinate like row-column." : ""); break;
-		case 10 : System.out.print(!game.isExploded() ? "  !Use \"-\" beetwen \"row\" and \"column\", where \"row\" is column number and \"column\" is row number." : ""); break;
+		case 10 : System.out.print(!game.isExploded() ? "  !Use \"-\" beetwen \"row\" and \"column\", where \"row\" is" : ""); break;
+		case 11 : System.out.print(!game.isExploded() ? "  column number and \"column\" is row number." : ""); break;
 		}
 	}
 	
