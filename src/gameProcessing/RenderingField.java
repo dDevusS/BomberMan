@@ -85,4 +85,8 @@ public class RenderingField {
 			System.out.print(" " + elementString + " ");
 		}
 	}
+	
+	private static int adaptRowToCoordinate(int row) {
+		return row - row / 2;
+	}
 }
