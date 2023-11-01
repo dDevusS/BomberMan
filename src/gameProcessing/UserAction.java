@@ -14,13 +14,14 @@ public class UserAction {
 			
 			switch (userCommand) {
 			case "exit" :
-				SaveLoadGameSession.saveGame(game);
+				ProcessingSaveGame.saveGame(game);
 				System.exit(0);
 				break;
 			}
-		
-			if (isCoordinate(userCommand, game)) {
-				Coordinate coordinate = new Coordinate(userCommand.split("-"));
+			
+			Coordinate coordinate = convertToCoordinate(userCommand, game);
+			
+			if (coordinate != null) {
 				
 				if (game.getCell(coordinate).isVisible()) {
 					System.out.println("This is visible cell. Chouse another cell, please.");
@@ -40,12 +41,12 @@ public class UserAction {
 		if (game.getCell(coordinate).getStepsFromBomb() != 0) {
 			return;
 		}
-		for (int row = -1; row <= 1; row++) {
-			for (int column = -1; column <= 1; column++) {
-				if (game.getCell(coordinate.shiftCoordinate(row, column)) != null && 
-						!game.getCell(coordinate.shiftCoordinate(row, column)).isVisible()) {
-					game.getCell(coordinate.shiftCoordinate(row, column)).makeVisible(game);
-					openAllZeroCellClosedToChoese(coordinate.shiftCoordinate(row, column), game);
+		for (int modificaterRow = -1; modificaterRow <= 1; modificaterRow++) {
+			for (int modificaterColumn = -1; modificaterColumn <= 1; modificaterColumn++) {
+				if (game.getCell(coordinate.shiftCoordinate(modificaterRow, modificaterColumn)) != null && 
+						!game.getCell(coordinate.shiftCoordinate(modificaterRow, modificaterColumn)).isVisible()) {
+					game.getCell(coordinate.shiftCoordinate(modificaterRow, modificaterColumn)).makeVisible(game);
+					openAllZeroCellClosedToChoese(coordinate.shiftCoordinate(modificaterRow, modificaterColumn), game);
 				}
 			}
 		}
@@ -64,7 +65,7 @@ public class UserAction {
 		game.getGameField().createBombs(game.getColumns(), game.getRows(), game.getQuantityOfBombs());
 	}
 	
-	private static boolean isCoordinate(String userCommand, GameSession game) {
+	private static Coordinate convertToCoordinate(String userCommand, GameSession game) {
 		String[] command = userCommand.split("-");
 		
 		if (command.length == 2) {
@@ -73,13 +74,13 @@ public class UserAction {
 				int column = Integer.parseInt(command[1].trim());
 				
 				if (row > 0 && row <= game.getRows() && column > 0 && column <= game.getColumns()) {
-					return true;
+					return new Coordinate(row, column);
 				}
 			} 
 			catch (NumberFormatException e) {
 			}
 		}
-		return false;
+		return null;
 	}
 	
 	private static void processValidCoordinate(GameSession game, Coordinate coordinate) {

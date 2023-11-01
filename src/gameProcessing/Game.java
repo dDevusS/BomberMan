@@ -20,7 +20,7 @@ public class Game {
 		
 		File newFile = new File(filePath);
 		
-		if (newFile.exists() && SaveLoadGameSession.loadGame() != null) {
+		if (newFile.exists() && ProcessingSaveGame.loadGame() != null) {
 			System.out.println("Continue game (Press c)");
 		}
 		
@@ -31,7 +31,7 @@ public class Game {
 		while (true) {
 			switch (UserAction.input.nextLine().toLowerCase()) {
 				case "s" : startNewGame(); break;
-				case "c" : SaveLoadGameSession.loadGame().startGame();; break;
+				case "c" : ProcessingSaveGame.loadGame().startGame();; break;
 				case "e" : System.exit(0); break;
 				default :
 					System.out.println("Uncorrect command.");

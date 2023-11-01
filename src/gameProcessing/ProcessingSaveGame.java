@@ -6,7 +6,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class SaveLoadGameSession {
+public class ProcessingSaveGame {
 	
 	private static File file = new File("GameSession.save");
 
