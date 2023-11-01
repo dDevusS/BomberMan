@@ -4,7 +4,7 @@ public class RenderingField {
 	
 	public static void renderGameSession(GameSession game) {
 		renderHead(game.getColumns());
-		for (int row = 1; row <= game.getRows(); row++) {
+		for (int row = 1; row <= game.getRows() * 2; row++) {
 			renderRow(game, row);
 		}
 	}
@@ -27,13 +27,8 @@ public class RenderingField {
 	private static void renderHead(int columns) {
 		System.out.print("   ");
 		for (int column = 1; column <= columns; column++) {
-			if (column < 10) {
-				System.out.print("  " + column + " ");
+			printElementOfField(column);
 			}
-			else {
-				System.out.print(" " + column + " ");
-			}
-		}
 		System.out.print("\n   ");
 		for (int column = 1; column <= columns; column++) {
 			System.out.print("----");
@@ -42,12 +37,21 @@ public class RenderingField {
 	}
 	
 	private static void renderRow(GameSession game, int row) {
-		renderRowNumber(row);
-		for (int column = 1; column <= game.getColumns(); column++) {
-			renderCell(game, row, column);
+		if (row % 2 != 0) {
+			renderRowNumber(adaptRowToCoordinate(row));
+			for (int column = 1; column <= game.getColumns(); column++) {
+				renderCell(game, adaptRowToCoordinate(row), column);
+			}
+			renderLegend(game, row);
 		}
-		renderLegend(game, row);
-		System.out.println(row < game.getRows() ? "\n  |" : "\n");
+		else {
+			System.out.print(row < game.getRows() * 2 ? "\n  |" : "\n");
+			for (int column = 1; column <= game.getColumns(); column++) {
+				System.out.print("----");
+			}
+			renderLegend(game, row);
+			System.out.print("\n");
+		}
 	}
 	
 	private static void renderRowNumber(int row) {
@@ -60,6 +64,20 @@ public class RenderingField {
 	}
 	
 	private static void renderCell(GameSession game, int row, int column) {
-			System.out.print("  " + game.showCell(column, row) + " ");
+		printElementOfField(game.showCell(column, row));
+	}
+	
+	private static int adaptRowToCoordinate(int row) {
+		return row - row / 2;
+	}
+	
+	private static void printElementOfField(Object element) {
+		String elementString = element.toString();
+		if (elementString.length() == 1) {
+			System.out.print("  " + elementString + " ");
+		}
+		else if (elementString.length() == 2) {
+			System.out.print(" " + elementString + " ");
+		}
 	}
 }
