@@ -47,7 +47,7 @@ public class RenderingField {
 		else {
 			System.out.print(row < game.getRows() * 2 ? "\n  |" : "\n");
 			for (int column = 1; column <= game.getColumns(); column++) {
-				System.out.print("----");
+				System.out.print("    ");
 			}
 			renderLegend(game, row);
 			System.out.print("\n");
@@ -64,7 +64,12 @@ public class RenderingField {
 	}
 	
 	private static void renderCell(GameSession game, int row, int column) {
-		printElementOfField(game.showCell(column, row));
+		if (!game.isExploded()) {
+		printElementOfField(game.getCell(column, row));
+		}
+		else {
+			printElementOfField(game.getCell(column, row).showCell());
+		}
 	}
 	
 	private static int adaptRowToCoordinate(int row) {

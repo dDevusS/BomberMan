@@ -38,23 +38,6 @@ public class GameSession implements Serializable {
 	public GameField getGameField() {
 		return gameField;
 	}
-	
-	public String showCell(int colum, int row) {
-		if (isExploded && getCell(new Coordinate(colum, row)).isBomb()) {
-			return "*";
-		}
-		else if (isExploded) {
-			return Integer.toString(getCell(new Coordinate(colum, row)).getStepsFromBomb());
-		}
-		else if (!getCell(new Coordinate(colum, row)).isVisible()) {
-			return ".";
-		}
-		else if (getCell(new Coordinate(colum, row)).isBomb()) {
-			return "*";
-		}
-		
-		return Integer.toString(getCell(new Coordinate(colum, row)).getStepsFromBomb());
-	}
 
 	public boolean isWon() {
 		return hiddenCells == 0;
@@ -82,6 +65,10 @@ public class GameSession implements Serializable {
 	
 	public void makeExplosion() {
 		this.isExploded = true;
+	}
+	
+	public Cell getCell(int column, int row) {
+		return gameField.getGameField().get(new Coordinate(column, row));
 	}
 	
 	public Cell getCell(Coordinate coordinate) {

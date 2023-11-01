@@ -55,15 +55,31 @@ public class Cell implements Serializable {
 		game.decriseHiddenCells();
 	}
 
-	public void doVisible(boolean isVisible) {
-		this.isVisible = isVisible;
-	}
-
 	public boolean isBeginingCell() {
 		return isBeginingCell;
 	}
 
 	public void makeBeginingCell() {
 		this.isBeginingCell = true;
+	}
+	
+	@Override
+	public String toString() {
+		if (!isVisible) {
+			return ".";
+		}
+		else if (isBomb) {
+			return "*";
+		}
+		return Integer.toString(stepsFromBomb);
+	}
+	
+	public String showCell() {
+		if (isBomb) {
+			return "*";
+		}
+		else {
+			return Integer.toString(stepsFromBomb);
+		}
 	}
 }
