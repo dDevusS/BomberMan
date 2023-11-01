@@ -33,4 +33,9 @@ public class ProcessingSaveGame {
 		}
 	}
 
+	public static void deleteSaveGame() {
+		if (file.exists()) {
+			file.delete();
+		}
+	}
 }

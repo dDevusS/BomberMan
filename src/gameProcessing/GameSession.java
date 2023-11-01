@@ -32,6 +32,7 @@ public class GameSession implements Serializable {
 			UserAction.makeTurn(this);
 			RenderingField.renderGameSession(this);
 		}
+		ProcessingSaveGame.deleteSaveGame();
 		Game.launchMainMenu();
 	}
 	
