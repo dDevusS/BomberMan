@@ -19,13 +19,13 @@ public class RenderingField {
 		
 		case 7 : System.out.print(!game.isExploded() ? "  For exit and save type \"EXIT\"." : game.isWon() ? "YOU WIN!!! CONGRATULATIONS" : ""); break;
 		
-		case 9 : System.out.print(!game.isExploded() ? "  Enter coordinate: type coordinate like row-column." : ""); break;
+		case 9 : System.out.print(!game.isExploded() ? "  Enter command: type command like \"your_command row-column\"." : ""); break;
 		case 10 : System.out.print(!game.isExploded() ? "  !Use \"-\" beetwen \"row\" and \"column\", where \"row\" is" : ""); break;
 		case 11 : System.out.print(!game.isExploded() ? "  column number and \"column\" is row number." : ""); break;
-		case 13 : System.out.print(!game.isExploded() ? "  Type \"unsure\" for marking cell like \"?\"." : ""); break;
-		case 14 : System.out.print(!game.isExploded() ? "  Type \"bomb\" for marking cell like \"X\". You can't open this cell." : ""); break;
-		case 15 : System.out.print(!game.isExploded() ? "  Type \"delete\" for delete your marker." : ""); break;
-		case 16 : System.out.print(!game.isExploded() ? "  You have to type coordinates after typing command." : ""); break;
+		case 12 : System.out.print(!game.isExploded() ? "  You have to type your_command and space befor typing coordinate." : ""); break;
+		case 14 : System.out.print(!game.isExploded() ? "  Type \"unsure\" as command for marking cell like \"?\"." : ""); break;
+		case 15 : System.out.print(!game.isExploded() ? "  Type \"bomb\" as command for marking cell like \"X\". You can't open this cell." : ""); break;
+		case 16 : System.out.print(!game.isExploded() ? "  Type \"delete\" as command for delete your marker." : ""); break;
 		}
 	}
 	

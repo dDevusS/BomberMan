@@ -11,7 +11,7 @@ public class UserAction {
 	
 	public static Scanner input = new Scanner(System.in);
 	
-	public static void alterMakeTurn(GameSession game) {
+	public static void makeTurn(GameSession game) {
 		while (true) {
 			String inputUserCommand = input.nextLine();
 			ProcessedCommand processedCommand = ProcessingUserCommand.processUserCommand(inputUserCommand, game);
@@ -21,36 +21,15 @@ public class UserAction {
 				System.exit(0);
 				return;
 			}
-			
-			if (processedCommand.getImputCoordinate() == null || processedCommand.getUserCommand() == null) {
+			else if (processedCommand.getImputCoordinate() == null || processedCommand.getUserCommand() == null) {
 				System.out.println("Uncorrect command. Please use examples for writing correct command.");
 			}
-			else {
-				switch (processedCommand.getUserCommand()) {
-				case OPEN_CELL :
-					if (openCell(game, processedCommand.getImputCoordinate())) {
-						return;
-					}
-					break;
-				case BOMB_MARKER :
-					if (alterMakeUserMarker(game, processedCommand)) {
-						return;
-					}
-					break;
-				case UNSURE_MARKER :
-					if (alterMakeUserMarker(game, processedCommand)) {
-						return;
-					}
-					break;
-				case DELETE_MARKER :
-					if (alterMakeUserMarker(game, processedCommand)) {
-						return;
-					}
-					break;
-				default:
-					System.out.println("Uncorrect command. Please use examples for writing correct command.");
-					break;
-				}
+			else if (processedCommand.getUserCommand() == Command.OPEN_CELL 
+					&& openCell(game, processedCommand.getImputCoordinate())) {
+				return;
+			}
+			else if (makeUserMarker(game, processedCommand)) {
+				return;
 			}
 		}
 	}
@@ -60,7 +39,7 @@ public class UserAction {
 				System.out.println("This is visible cell. Chouse another cell, please.");
 				return false;
 			}
-			else if (game.getCell(coordinate).toString() == "X") {
+			else if (game.getCell(coordinate).toString().equals("X")) {
 				System.out.println("Be careful! You marked this like bomb.");
 				return false;
 			}
@@ -69,7 +48,7 @@ public class UserAction {
 			return true;
 	}
 	
-	private static boolean alterMakeUserMarker(GameSession game, ProcessedCommand processedCommand) {
+	private static boolean makeUserMarker(GameSession game, ProcessedCommand processedCommand) {
 		if (!game.getCell(processedCommand.getImputCoordinate()).isVisible()) {
 			switch (processedCommand.getUserCommand()) {
 			case BOMB_MARKER :
@@ -80,6 +59,8 @@ public class UserAction {
 				break;
 			case DELETE_MARKER :
 				game.getCell(processedCommand.getImputCoordinate()).deleteMark();
+				break;
+			default : 
 				break;
 			}
 			return true;
