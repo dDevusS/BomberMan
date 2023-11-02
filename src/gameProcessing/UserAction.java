@@ -21,7 +21,7 @@ public class UserAction {
 				game.stopGame();
 				return;
 			}
-			else if (processedCommand.getImputCoordinate() == null || processedCommand.getUserCommand() == null) {
+			else if (processedCommand.getImputCoordinate() == null || processedCommand.getUserCommand() == Command.UNKNOWN) {
 				System.out.println("Uncorrect command. Please use examples for writing correct command.\n "
 						+ "user_command row-column for example \"open 3-7\"");
 			}
