@@ -16,6 +16,18 @@ public class RenderingGame {
 		}
 	}
 	
+	public static void renderMainMenu(GameSession savedGame, boolean existSavedGame) {
+		if (existSavedGame) {
+			renderGameSession(savedGame, existSavedGame);
+		}
+		else {
+			for (int numberOfLine = 1; numberOfLine <= 8; numberOfLine++) {
+				renderMainPartOfMenu(numberOfLine, existSavedGame);
+				System.out.println();
+			}
+		}
+	}
+	
 	private static void renderLegend(GameSession game, int row) {
 		switch (row) {
 		case 1 : System.out.print(!game.isExploded() ? "  Bomberman." : "  Bomberman is EXPLODED!!!"); break;
@@ -33,18 +45,6 @@ public class RenderingGame {
 		case 14 : System.out.print(!game.isExploded() ? "  Type \"unsure\" as command for marking cell like \"?\"." : ""); break;
 		case 15 : System.out.print(!game.isExploded() ? "  Type \"bomb\" as command for marking cell like \"X\". You can't open this cell." : ""); break;
 		case 16 : System.out.print(!game.isExploded() ? "  Type \"delete\" as command for delete your marker." : ""); break;
-		}
-	}
-	
-	public static void renderMainMenu(GameSession savedGame, boolean existSavedGame) {
-		if (existSavedGame) {
-			renderGameSession(savedGame, existSavedGame);
-		}
-		else {
-			for (int numberOfLine = 1; numberOfLine <= 8; numberOfLine++) {
-				renderMainPartOfMenu(numberOfLine, existSavedGame);
-				System.out.println();
-			}
 		}
 	}
 	
@@ -67,7 +67,7 @@ public class RenderingGame {
 		for (int column = 1; column <= columns; column++) {
 			System.out.print("----");
 		}
-		System.out.print("\n");
+		System.out.println();
 	}
 	
 	private static void renderRow(GameSession game, int row, boolean existSavedGame) {
@@ -94,7 +94,7 @@ public class RenderingGame {
 			else {
 			renderLegend(game, row);
 			}
-			System.out.print("\n");
+			System.out.println();
 		}
 	}
 	

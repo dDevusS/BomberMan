@@ -8,7 +8,8 @@ import java.io.ObjectOutputStream;
 
 public class ProcessingSaveGame {
 	
-	private static File file = new File("GameSession.save");
+	private static String userDir = System.getProperty("user.dir");
+	private static File file = new File(userDir + File.separator + "GameSession.save");
 
 	public static void saveGame(GameSession game) {
 		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {

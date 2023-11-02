@@ -1,19 +1,25 @@
-package gameProcessing;
+package game;
 
 import java.io.File;
 
+import gameProcessing.GameSession;
+import gameProcessing.ProcessingSaveGame;
+import gameProcessing.RenderingGame;
+import gameProcessing.UserAction;
+
 public class Game {
+	
+	private static String userDir = System.getProperty("user.dir");
+	private static File savedGame = new File(userDir + File.separator + "GameSession.save");
 
 	public static void main(String[] args) {
 		while (true) {
-			File savedGame = new File("GameSession.save");
 			boolean existSavedGame = savedGame.exists() && ProcessingSaveGame.loadGame() != null;
 			launchMainMenu(existSavedGame);
 		}
 	}
 	
 	static void launchMainMenu(boolean existSavedGame) {
-		File savedGame = new File("GameSession.save");
 		if (existSavedGame) {
 			GameSession game = ProcessingSaveGame.loadGame();
 			RenderingGame.renderMainMenu(game, existSavedGame);
