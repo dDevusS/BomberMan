@@ -22,6 +22,10 @@ public class RenderingField {
 		case 9 : System.out.print(!game.isExploded() ? "  Enter coordinate: type coordinate like row-column." : ""); break;
 		case 10 : System.out.print(!game.isExploded() ? "  !Use \"-\" beetwen \"row\" and \"column\", where \"row\" is" : ""); break;
 		case 11 : System.out.print(!game.isExploded() ? "  column number and \"column\" is row number." : ""); break;
+		case 13 : System.out.print(!game.isExploded() ? "  Type \"unsure\" for marking cell like \"?\"." : ""); break;
+		case 14 : System.out.print(!game.isExploded() ? "  Type \"bomb\" for marking cell like \"X\". You can't open this cell." : ""); break;
+		case 15 : System.out.print(!game.isExploded() ? "  Type \"delete\" for delete your marker." : ""); break;
+		case 16 : System.out.print(!game.isExploded() ? "  You have to type coordinates after typing command" : ""); break;
 		}
 	}
 	
