@@ -22,7 +22,8 @@ public class UserAction {
 				return;
 			}
 			else if (processedCommand.getImputCoordinate() == null || processedCommand.getUserCommand() == null) {
-				System.out.println("Uncorrect command. Please use examples for writing correct command.");
+				System.out.println("Uncorrect command. Please use examples for writing correct command.\n "
+						+ "user_command row-column for example \"open 3-7\"");
 			}
 			else if (processedCommand.getUserCommand() == Command.OPEN_CELL 
 					&& openCell(game, processedCommand.getImputCoordinate())) {
