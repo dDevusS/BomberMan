@@ -17,6 +17,7 @@ public class GameSession implements Serializable {
 	private int counterTurns = 0;
 	private GameField gameField;
 	private boolean isExploded = false;
+	private boolean isStopped;
 	
 	public GameSession(int rows, int columns, int quantutyOfBombs) {
 		this.rows = rows;
@@ -28,12 +29,15 @@ public class GameSession implements Serializable {
 	
 	public void startGame() {
 		RenderingField.renderGameSession(this);
-		while (!isExploded & !isWon()) {
+		isStopped = false;
+		
+		while (!isExploded & !isWon() & !isStopped) {
 			UserAction.makeTurn(this);
 			RenderingField.renderGameSession(this);
 		}
-		ProcessingSaveGame.deleteSaveGame();
-		Game.launchMainMenu();
+		if (isExploded || isWon()) {
+			ProcessingSaveGame.deleteSaveGame();
+		}
 	}
 	
 	public GameField getGameField() {
@@ -86,5 +90,9 @@ public class GameSession implements Serializable {
 
 	public int getHiddenCells() {
 		return hiddenCells;
+	}
+	
+	public void stopGame() {
+		this.isStopped = true;
 	}
 }

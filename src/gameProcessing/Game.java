@@ -5,7 +5,9 @@ import java.io.File;
 public class Game {
 
 	public static void main(String[] args) {
-		launchMainMenu();
+		while (true) {
+			launchMainMenu();
+		}
 	}
 	
 	static void launchMainMenu() {
@@ -30,9 +32,9 @@ public class Game {
 				""");
 		while (true) {
 			switch (UserAction.input.nextLine().toLowerCase()) {
-				case "s" : startNewGame(); break;
-				case "c" : ProcessingSaveGame.loadGame().startGame();; break;
-				case "e" : System.exit(0); break;
+				case "s" : startNewGame(); return;
+				case "c" : ProcessingSaveGame.loadGame().startGame();; return;
+				case "e" : System.exit(0); return;
 				default :
 					System.out.println("Uncorrect command.");
 			}

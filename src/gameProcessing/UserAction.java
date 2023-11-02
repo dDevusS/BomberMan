@@ -18,7 +18,7 @@ public class UserAction {
 			
 			if (processedCommand.getUserCommand() == Command.EXIT) {
 				ProcessingSaveGame.saveGame(game);
-				System.exit(0);
+				game.stopGame();
 				return;
 			}
 			else if (processedCommand.getImputCoordinate() == null || processedCommand.getUserCommand() == null) {

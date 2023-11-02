@@ -32,6 +32,7 @@ public class ProcessingUserCommand {
 	}
 	
 	private static Command returnCommand(String command) {
+		//TODO: add Unknown command
 		switch (command) {
 		case "open" :
 			return Command.OPEN_CELL;
