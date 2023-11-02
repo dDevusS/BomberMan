@@ -23,4 +23,25 @@ public class ProcessingUserCommand {
 		return null;
 	}
 	
+	public static ProcessedCommand processUserCommand(String userCommand, GameSession game) {
+		String[] splitedCommand = userCommand.toLowerCase().split(" ", 2);
+		return new ProcessedCommand(returnCommand(splitedCommand[0]), convertToCoordinate(splitedCommand[1], game));
+	}
+	
+	private static Command returnCommand(String command) {
+		switch (command) {
+		case "open" :
+			return Command.OPEN_CELL;
+		case "unsure" :
+			return Command.UNSURE_MARKER;
+		case "bomb" :
+			return Command.BOMB_MARKER;
+		case "delete" :
+			return Command.DELETE_MARKER;
+		case "exit" :
+			return Command.EXIT;
+		default:
+			return null;
+		}
+	}
 }
