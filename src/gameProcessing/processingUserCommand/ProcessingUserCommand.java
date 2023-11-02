@@ -25,7 +25,10 @@ public class ProcessingUserCommand {
 	
 	public static ProcessedCommand processUserCommand(String userCommand, GameSession game) {
 		String[] splitedCommand = userCommand.toLowerCase().split(" ", 2);
+		if (splitedCommand.length == 2) {
 		return new ProcessedCommand(returnCommand(splitedCommand[0]), convertToCoordinate(splitedCommand[1], game));
+		}
+		else return new ProcessedCommand(returnCommand(splitedCommand[0]), null);
 	}
 	
 	private static Command returnCommand(String command) {
