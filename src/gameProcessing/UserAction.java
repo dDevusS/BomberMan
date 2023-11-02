@@ -3,6 +3,7 @@ package gameProcessing;
 import java.util.Scanner;
 
 import gameEntity.Coordinate;
+import gameProcessing.processingUserCommand.ProcessingUserCommand;
 
 public class UserAction {
 	
@@ -28,7 +29,7 @@ public class UserAction {
 				return;
 			}
 			
-			Coordinate coordinate = convertToCoordinate(userCommand, game);
+			Coordinate coordinate = ProcessingUserCommand.convertToCoordinate(userCommand, game);
 			
 			if (coordinate != null) {
 				
@@ -78,24 +79,6 @@ public class UserAction {
 		game.getGameField().createBombs(game.getColumns(), game.getRows(), game.getQuantityOfBombs());
 	}
 	
-	private static Coordinate convertToCoordinate(String userCommand, GameSession game) {
-		String[] command = userCommand.split("-");
-		
-		if (command.length == 2) {
-			try {
-				int row = Integer.parseInt(command[0].trim());
-				int column = Integer.parseInt(command[1].trim());
-				
-				if (row > 0 && row <= game.getRows() && column > 0 && column <= game.getColumns()) {
-					return new Coordinate(row, column);
-				}
-			} 
-			catch (NumberFormatException e) {
-			}
-		}
-		return null;
-	}
-	
 	private static void processValidCoordinate(GameSession game, Coordinate coordinate) {
 		game.increaceCounterTurn();
 		game.getCell(coordinate).makeVisible(game);
@@ -114,7 +97,7 @@ public class UserAction {
 	
 	private static void makeUserMarker(GameSession game, String userMarker) {
 		String userCommand = input.nextLine();
-		Coordinate coordinate = convertToCoordinate(userCommand, game);
+		Coordinate coordinate = ProcessingUserCommand.convertToCoordinate(userCommand, game);
 		
 		if (coordinate != null && !game.getCell(coordinate).isVisible()) {
 			game.getCell(coordinate).makeMark(userMarker);
