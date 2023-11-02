@@ -25,7 +25,7 @@ public class RenderingField {
 		case 13 : System.out.print(!game.isExploded() ? "  Type \"unsure\" for marking cell like \"?\"." : ""); break;
 		case 14 : System.out.print(!game.isExploded() ? "  Type \"bomb\" for marking cell like \"X\". You can't open this cell." : ""); break;
 		case 15 : System.out.print(!game.isExploded() ? "  Type \"delete\" for delete your marker." : ""); break;
-		case 16 : System.out.print(!game.isExploded() ? "  You have to type coordinates after typing command" : ""); break;
+		case 16 : System.out.print(!game.isExploded() ? "  You have to type coordinates after typing command." : ""); break;
 		}
 	}
 	
