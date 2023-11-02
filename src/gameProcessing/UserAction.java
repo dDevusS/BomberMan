@@ -3,6 +3,7 @@ package gameProcessing;
 import java.util.Scanner;
 
 import gameEntity.Coordinate;
+import gameProcessing.processingUserCommand.Command;
 import gameProcessing.processingUserCommand.ProcessedCommand;
 import gameProcessing.processingUserCommand.ProcessingUserCommand;
 
@@ -15,64 +16,77 @@ public class UserAction {
 			String inputUserCommand = input.nextLine();
 			ProcessedCommand processedCommand = ProcessingUserCommand.processUserCommand(inputUserCommand, game);
 			
-			switch (processedCommand.getUserCommand()) {
-			case EXIT :
+			if (processedCommand.getUserCommand() == Command.EXIT) {
 				ProcessingSaveGame.saveGame(game);
 				System.exit(0);
 				return;
-			case OPEN_CELL :
-				return;
-			case BOMB_MARKER :
-				return;
-			case UNSURE_MARKER :
-				return;
-			case DELETE_MARKER :
-				return;
-			default:
+			}
+			
+			if (processedCommand.getImputCoordinate() == null || processedCommand.getUserCommand() == null) {
 				System.out.println("Uncorrect command. Please use examples for writing correct command.");
+			}
+			else {
+				switch (processedCommand.getUserCommand()) {
+				case OPEN_CELL :
+					if (openCell(game, processedCommand.getImputCoordinate())) {
+						return;
+					}
+					break;
+				case BOMB_MARKER :
+					if (alterMakeUserMarker(game, processedCommand)) {
+						return;
+					}
+					break;
+				case UNSURE_MARKER :
+					if (alterMakeUserMarker(game, processedCommand)) {
+						return;
+					}
+					break;
+				case DELETE_MARKER :
+					if (alterMakeUserMarker(game, processedCommand)) {
+						return;
+					}
+					break;
+				default:
+					System.out.println("Uncorrect command. Please use examples for writing correct command.");
+					break;
+				}
 			}
 		}
 	}
 	
-	public static void makeTurn(GameSession game) {
-		while (true) {
-			String userCommand = input.nextLine();
-			
-			switch (userCommand.toLowerCase()) {
-			case "exit" :
-				ProcessingSaveGame.saveGame(game);
-				System.exit(0);
-				break;
-			case "unsure" :
-				makeUserMarker(game, "?");
-				return;
-			case "bomb" :
-				makeUserMarker(game, "X");
-				return;
-			case "delete" :
-				makeUserMarker(game, null);
-				return;
+	private static boolean openCell(GameSession game, Coordinate coordinate) {		
+			if (game.getCell(coordinate).isVisible()) {
+				System.out.println("This is visible cell. Chouse another cell, please.");
+				return false;
+			}
+			else if (game.getCell(coordinate).toString() == "X") {
+				System.out.println("Be careful! You marked this like bomb.");
+				return false;
 			}
 			
-			Coordinate coordinate = ProcessingUserCommand.convertToCoordinate(userCommand, game);
-			
-			if (coordinate != null) {
-				
-				if (game.getCell(coordinate).isVisible()) {
-					System.out.println("This is visible cell. Chouse another cell, please.");
-					continue;
-				}
-				else if (game.getCell(coordinate).toString() == "X") {
-					System.out.println("Be careful! You marked this like bomb.");
-					return;
-				}
-				
-				processValidCoordinate(game, coordinate);
+			processValidCoordinate(game, coordinate);
+			return true;
+	}
+	
+	private static boolean alterMakeUserMarker(GameSession game, ProcessedCommand processedCommand) {
+		if (!game.getCell(processedCommand.getImputCoordinate()).isVisible()) {
+			switch (processedCommand.getUserCommand()) {
+			case BOMB_MARKER :
+				game.getCell(processedCommand.getImputCoordinate()).makeMark("X");
+				break;
+			case UNSURE_MARKER :
+				game.getCell(processedCommand.getImputCoordinate()).makeMark("?");
+				break;
+			case DELETE_MARKER :
+				game.getCell(processedCommand.getImputCoordinate()).deleteMark();
 				break;
 			}
-			else {
-				System.out.println("Uncorrect command. Please use examples for writing correct command.");
-			}
+			return true;
+		}
+		else {
+			System.out.println("This is visible cell. Chouse another cell, please.");
+			return false;
 		}
 	}
 	
@@ -117,18 +131,6 @@ public class UserAction {
 		}
 		else {
 			openAllZeroCellClosedToChoese(coordinate, game);
-		}
-	}
-	
-	private static void makeUserMarker(GameSession game, String userMarker) {
-		String userCommand = input.nextLine();
-		Coordinate coordinate = ProcessingUserCommand.convertToCoordinate(userCommand, game);
-		
-		if (coordinate != null && !game.getCell(coordinate).isVisible()) {
-			game.getCell(coordinate).makeMark(userMarker);
-		}
-		else {
-			System.out.println("Uncorrect command. Please use examples for writing correct command.");
 		}
 	}
 }

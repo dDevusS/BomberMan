@@ -90,4 +90,8 @@ public class Cell implements Serializable {
 	public void makeMark(String userMark) {
 		this.userMarker = userMark;
 	}
+	
+	public void deleteMark() {
+		this.userMarker = null;
+	}
 }
