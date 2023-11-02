@@ -9,6 +9,11 @@ import gameProcessing.UserAction;
 
 public class Game {
 	
+	private static final int DEFAULT_HEIGHT = 10;
+	private static final int DEFAULT_WEDTH = 10;
+	private static final int DEFAULT_QUANTITY_BOMBS_EASY = 20;
+	private static final int DEFAULT_QUANTITY_BOMBS_MEDIUM = 30;
+	private static final int DEFAULT_QUANTITY_BOMBS_HARD = 40;
 	private static String userDir = System.getProperty("user.dir");
 	private static File savedGame = new File(userDir + File.separator + "GameSession.save");
 
@@ -69,9 +74,9 @@ public class Game {
 	private static GameSession chooseDificult() {
 		while (true) {
 			switch (UserAction.input.nextLine()) {
-			case "1" : return new GameSession(10, 10, 20);
-			case "2" : return new GameSession(10, 10, 30);
-			case "3" : return new GameSession(10, 10, 40);
+			case "1" : return new GameSession(DEFAULT_HEIGHT, DEFAULT_WEDTH, DEFAULT_QUANTITY_BOMBS_EASY);
+			case "2" : return new GameSession(DEFAULT_HEIGHT, DEFAULT_WEDTH, DEFAULT_QUANTITY_BOMBS_MEDIUM);
+			case "3" : return new GameSession(DEFAULT_HEIGHT, DEFAULT_WEDTH, DEFAULT_QUANTITY_BOMBS_HARD);
 			default :
 				System.out.println("Uncorrect command.");
 			}
