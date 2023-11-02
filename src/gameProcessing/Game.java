@@ -6,37 +6,42 @@ public class Game {
 
 	public static void main(String[] args) {
 		while (true) {
-			launchMainMenu();
+			File savedGame = new File("GameSession.save");
+			boolean existSavedGame = savedGame.exists() && ProcessingSaveGame.loadGame() != null;
+			launchMainMenu(existSavedGame);
 		}
 	}
 	
-	static void launchMainMenu() {
-		System.out.println("""
-				BomberMan.
-			------------------
-			""");
-		
-		String workingDirectiry = System.getProperty("user.dir");
-		String fileName = "GameSession.save";
-		String filePath = workingDirectiry + File.separator + fileName;
-		
-		File newFile = new File(filePath);
-		
-		if (newFile.exists() && ProcessingSaveGame.loadGame() != null) {
-			System.out.println("Continue game (Press c)");
+	static void launchMainMenu(boolean existSavedGame) {
+		File savedGame = new File("GameSession.save");
+		if (existSavedGame) {
+			GameSession game = ProcessingSaveGame.loadGame();
+			RenderingGame.renderMainMenu(game, existSavedGame);
+		}
+		else {
+			RenderingGame.renderMainMenu(null, existSavedGame);
 		}
 		
-		System.out.println("""
-			Start new game (press s)
-			Exit (press e)
-				""");
 		while (true) {
 			switch (UserAction.input.nextLine().toLowerCase()) {
-				case "s" : startNewGame(); return;
-				case "c" : ProcessingSaveGame.loadGame().startGame();; return;
-				case "e" : System.exit(0); return;
+				case "s" :
+					startNewGame();
+					return;
+				case "c" :
+					if (savedGame.exists() && ProcessingSaveGame.loadGame() != null) {
+						ProcessingSaveGame.loadGame().startGame();
+						return;
+					}
+					else {
+						System.out.println("Uncorrect command.");
+						break;
+					}
+				case "e" :
+					System.exit(0);
+					return;
 				default :
 					System.out.println("Uncorrect command.");
+					break;
 			}
 		}
 	}

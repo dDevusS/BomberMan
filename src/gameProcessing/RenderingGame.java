@@ -1,11 +1,18 @@
 package gameProcessing;
 
-public class RenderingField {
+public class RenderingGame {
 	
 	public static void renderGameSession(GameSession game) {
 		renderHead(game.getColumns());
 		for (int row = 1; row <= game.getRows() * 2; row++) {
-			renderRow(game, row);
+			renderRow(game, row, false);
+		}
+	}
+	
+	public static void renderGameSession(GameSession game, boolean existSavedGame) {
+		renderHead(game.getColumns());
+		for (int row = 1; row <= game.getRows() * 2; row++) {
+			renderRow(game, row, existSavedGame);
 		}
 	}
 	
@@ -29,6 +36,28 @@ public class RenderingField {
 		}
 	}
 	
+	public static void renderMainMenu(GameSession savedGame, boolean existSavedGame) {
+		if (existSavedGame) {
+			renderGameSession(savedGame, existSavedGame);
+		}
+		else {
+			for (int numberOfLine = 1; numberOfLine <= 8; numberOfLine++) {
+				renderMainPartOfMenu(numberOfLine, existSavedGame);
+				System.out.println();
+			}
+		}
+	}
+	
+	private static void renderMainPartOfMenu(int numberOfLine, boolean existSavedGame) {
+		switch (numberOfLine) {
+		case 1 : System.out.print("      BomberMan."); break;
+		case 2 : System.out.print("  ------------------"); break;
+		case 4 : System.out.print(existSavedGame ? "  Continue game (Press c)" : ""); break;
+		case 5 : System.out.print("  Start new game (press s)"); break;
+		case 7 : System.out.print("  Exit (press e)"); break;		
+		}
+	}
+	
 	private static void renderHead(int columns) {
 		System.out.print("   ");
 		for (int column = 1; column <= columns; column++) {
@@ -41,20 +70,30 @@ public class RenderingField {
 		System.out.print("\n");
 	}
 	
-	private static void renderRow(GameSession game, int row) {
+	private static void renderRow(GameSession game, int row, boolean existSavedGame) {
 		if (row % 2 != 0) {
 			renderRowNumber(adaptRowToCoordinate(row));
 			for (int column = 1; column <= game.getColumns(); column++) {
 				renderCell(game, adaptRowToCoordinate(row), column);
 			}
+			if (existSavedGame) {
+				renderMainPartOfMenu(row, existSavedGame);
+			}
+			else {
 			renderLegend(game, row);
+			}
 		}
 		else {
 			System.out.print(row < game.getRows() * 2 ? "\n  |" : "\n");
 			for (int column = 1; column <= game.getColumns(); column++) {
 				System.out.print("    ");
 			}
+			if (existSavedGame) {
+				renderMainPartOfMenu(row, existSavedGame);
+			}
+			else {
 			renderLegend(game, row);
+			}
 			System.out.print("\n");
 		}
 	}

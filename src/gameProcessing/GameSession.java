@@ -28,12 +28,12 @@ public class GameSession implements Serializable {
 	}
 	
 	public void startGame() {
-		RenderingField.renderGameSession(this);
+		RenderingGame.renderGameSession(this);
 		isStopped = false;
 		
 		while (!isExploded & !isWon() & !isStopped) {
 			UserAction.makeTurn(this);
-			RenderingField.renderGameSession(this);
+			RenderingGame.renderGameSession(this);
 		}
 		if (isExploded || isWon()) {
 			ProcessingSaveGame.deleteSaveGame();
