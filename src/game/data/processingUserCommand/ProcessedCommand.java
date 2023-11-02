@@ -1,12 +1,12 @@
-package gameProcessing.processingUserCommand;
+package game.data.processingUserCommand;
 
-import gameEntity.Coordinate;
+import game.data.gameEntity.Coordinate;
 
 public class ProcessedCommand {
-	
+
 	private Command userCommand;
 	private Coordinate imputCoordinate;
-	
+
 	ProcessedCommand(Command userCommand, Coordinate inputCoordinate) {
 		this.userCommand = userCommand;
 		this.imputCoordinate = inputCoordinate;

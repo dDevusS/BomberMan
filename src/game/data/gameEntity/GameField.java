@@ -1,4 +1,4 @@
-package gameEntity;
+package game.data.gameEntity;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -7,7 +7,7 @@ import java.util.Random;
 public class GameField implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private HashMap<Coordinate, Cell> gameField = new HashMap<>();
 
 	public GameField(int rows, int columns) {
@@ -17,7 +17,7 @@ public class GameField implements Serializable {
 	public HashMap<Coordinate, Cell> getGameField() {
 		return gameField;
 	}
-	
+
 	private void createClearField(int rows, int columns) {
 		for (int row = 1; row <= rows; row++) {
 			for (int column = 1; column <= columns; column++) {
@@ -25,13 +25,13 @@ public class GameField implements Serializable {
 			}
 		}
 	}
-	
+
 	public void createBombs(int rows, int columns, int quantityOfBombs) {
 		Random random = new Random();
 		int counterBombs = 0;
 
 		while (counterBombs < quantityOfBombs) {
-			int row = random.nextInt(1 , rows + 1);
+			int row = random.nextInt(1, rows + 1);
 			int column = random.nextInt(1, columns + 1);
 			Coordinate randomCoordinate = new Coordinate(row, column);
 
@@ -41,8 +41,8 @@ public class GameField implements Serializable {
 
 				for (int y = -1; y <= 1; y++) {
 					for (int x = -1; x <= 1; x++) {
-						if (gameField.get(randomCoordinate.shiftCoordinate(y, x)) != null && 
-								!gameField.get(randomCoordinate.shiftCoordinate(y, x)).isBomb()) {
+						if (gameField.get(randomCoordinate.shiftCoordinate(y, x)) != null
+								&& !gameField.get(randomCoordinate.shiftCoordinate(y, x)).isBomb()) {
 							gameField.get(randomCoordinate.shiftCoordinate(y, x)).plusStep();
 						}
 					}

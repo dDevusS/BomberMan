@@ -1,25 +1,25 @@
-package gameEntity;
+package game.data.gameEntity;
 
 import java.io.Serializable;
 import java.util.Objects;
 
 public class Coordinate implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private int row;
 	private int column;
-	
+
 	public Coordinate(int row, int column) {
 		this.row = row;
 		this.column = column;
 	}
-	
+
 	public Coordinate(String[] arrayCoordinate) {
 		this.row = Integer.parseInt(arrayCoordinate[0].trim());
 		this.column = Integer.parseInt(arrayCoordinate[1].trim());
 	}
-	
+
 	public Coordinate shiftCoordinate(int y, int x) {
 		return new Coordinate(this.row + y, this.column + x);
 	}

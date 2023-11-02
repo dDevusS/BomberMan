@@ -1,15 +1,15 @@
-package gameProcessing;
+package game.data;
 
 import java.io.Serializable;
 
-import gameEntity.Cell;
-import gameEntity.Coordinate;
-import gameEntity.GameField;
+import game.data.gameEntity.Cell;
+import game.data.gameEntity.Coordinate;
+import game.data.gameEntity.GameField;
 
 public class GameSession implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private int rows;
 	private int columns;
 	private int quantityOfBombs;
@@ -18,7 +18,7 @@ public class GameSession implements Serializable {
 	private GameField gameField;
 	private boolean isExploded = false;
 	private boolean isStopped;
-	
+
 	public GameSession(int rows, int columns, int quantutyOfBombs) {
 		this.rows = rows;
 		this.columns = columns;
@@ -26,11 +26,11 @@ public class GameSession implements Serializable {
 		this.gameField = new GameField(rows, columns);
 		this.hiddenCells = columns * rows - quantutyOfBombs;
 	}
-	
+
 	public void startGame() {
 		RenderingGame.renderGameSession(this);
 		isStopped = false;
-		
+
 		while (!isExploded & !isWon() & !isStopped) {
 			UserAction.makeTurn(this);
 			RenderingGame.renderGameSession(this);
@@ -39,7 +39,7 @@ public class GameSession implements Serializable {
 			ProcessingSaveGame.deleteSaveGame();
 		}
 	}
-	
+
 	public GameField getGameField() {
 		return gameField;
 	}
@@ -59,7 +59,7 @@ public class GameSession implements Serializable {
 	public int getCounterTurns() {
 		return counterTurns;
 	}
-	
+
 	public void increaceCounterTurn() {
 		this.counterTurns++;
 	}
@@ -67,15 +67,15 @@ public class GameSession implements Serializable {
 	public int getQuantityOfBombs() {
 		return quantityOfBombs;
 	}
-	
+
 	public void makeExplosion() {
 		this.isExploded = true;
 	}
-	
+
 	public Cell getCell(int row, int column) {
 		return gameField.getGameField().get(new Coordinate(row, column));
 	}
-	
+
 	public Cell getCell(Coordinate coordinate) {
 		return gameField.getGameField().get(coordinate);
 	}
@@ -91,7 +91,7 @@ public class GameSession implements Serializable {
 	public int getHiddenCells() {
 		return hiddenCells;
 	}
-	
+
 	public void stopGame() {
 		this.isStopped = true;
 	}
