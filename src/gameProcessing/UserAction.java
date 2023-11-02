@@ -3,11 +3,36 @@ package gameProcessing;
 import java.util.Scanner;
 
 import gameEntity.Coordinate;
+import gameProcessing.processingUserCommand.ProcessedCommand;
 import gameProcessing.processingUserCommand.ProcessingUserCommand;
 
 public class UserAction {
 	
 	public static Scanner input = new Scanner(System.in);
+	
+	public static void alterMakeTurn(GameSession game) {
+		while (true) {
+			String inputUserCommand = input.nextLine();
+			ProcessedCommand processedCommand = ProcessingUserCommand.processUserCommand(inputUserCommand, game);
+			
+			switch (processedCommand.getUserCommand()) {
+			case EXIT :
+				ProcessingSaveGame.saveGame(game);
+				System.exit(0);
+				return;
+			case OPEN_CELL :
+				return;
+			case BOMB_MARKER :
+				return;
+			case UNSURE_MARKER :
+				return;
+			case DELETE_MARKER :
+				return;
+			default:
+				System.out.println("Uncorrect command. Please use examples for writing correct command.");
+			}
+		}
+	}
 	
 	public static void makeTurn(GameSession game) {
 		while (true) {
