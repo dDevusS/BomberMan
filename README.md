@@ -11,6 +11,6 @@ You can see legend on left from field for remembering this commands.
 If you want to exit from the game, don't worry, all your progress will be saved.
 
 ### My goals of writing this projec
-1 - recall basic java syntax;
-2 - improve skills of coding;
-3 - find out how to work with Git;
+1 - recall basic java syntax
+2 - improve skills of coding
+3 - find out how to work with Git
