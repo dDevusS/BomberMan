@@ -1,5 +1,8 @@
 # BomberMan
 
+![Screenshot 2023-11-03 133854](https://github.com/dDevusS/BomberMan/assets/140493120/81da00ec-b675-4770-903b-af0e39f8c6d8)
+
+
 ### About
 
   It's a classic game Minesweeper with console interface created by me.
