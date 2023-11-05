@@ -14,6 +14,10 @@ and second numbers is coordinate of cell that you want to open or mark.
 You can see legend on left from field for remembering this commands.
 	If you want to exit from the game, don't worry, all your progress will be saved.
 
+## How to start
+
+   You should download only BomberMan.jar file and put "java -jar BomberMan.jar" at terminal that opens in directory of file.
+
 ### My goals of writing this projec
 
 - recall basic java syntax;
